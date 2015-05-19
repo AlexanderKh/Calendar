@@ -14,9 +14,13 @@ class ImprovedCalendar{
 		else
 			date = parseConsoleInput(args);
 		}catch(Exception e){
-			System.out.println("error");
+			System.out.println("Error");
 			return;
 		}
+		showCalendar(calendar, date);
+	}
+
+	public static void showCalendar(Calendar calendar, ArrayList<Integer> date){
 		int year = date.get(0);
 		int month = date.get(1);
 		int day = date.get(2);
@@ -25,7 +29,6 @@ class ImprovedCalendar{
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		while(calendar.get(Calendar.DAY_OF_WEEK) > 1)
 			calendar.add(Calendar.DAY_OF_YEAR, -1);
-
 		System.out.println("\u001B[31mSun\u001B[0m\tMon\tTue\tWed\tThu\tFri\t\u001B[31mSat\u001B[0m ");
 		while ((calendar.get(Calendar.MONTH) + 12) % 11 <= month + 1 && calendar.get(Calendar.YEAR) <= year){
 			for (int j = 0; j < 7; j++){
