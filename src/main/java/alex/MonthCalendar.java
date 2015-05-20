@@ -11,7 +11,7 @@ public class MonthCalendar {
     MonthCalendar(Date firstDayOfMonth){
         startingDate = firstDayOfMonth;
         weeks = new LinkedList<Week>();
-        weeks.add(new Week(startingDate));
+        weeks.add(new Week((Date)startingDate.clone()));
         while (!weeks.getLast().isWeekInNextMonth()){
             weeks.add(weeks.getLast().getNextWeek());
         }
@@ -20,6 +20,7 @@ public class MonthCalendar {
     @Override
     public String toString(){
         String result = "";
+        System.out.println(weeks.size());
         for(Week week:weeks){
             result += week.toString() + "\n\n";
         }
