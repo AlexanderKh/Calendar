@@ -46,7 +46,7 @@
           <manifest>
             <addClasspath>true</addClasspath>
             <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>alex.ImprovedCalendar</mainClass>
+            <mainClass>alex.CalendarApp</mainClass>
           </manifest>
         </archive>
       </configuration>
