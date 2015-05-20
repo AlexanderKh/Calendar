@@ -8,28 +8,26 @@ public class Week {
     private static final int DAYS_IN_WEEK = 7;
     private LinkedList<Day> days;
 
-    Week(Date startingDate){
+    Week(Calendar startingDate){
         days = new LinkedList<Day>();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(startingDate);
+        Calendar calendar = startingDate;
         while (calendar.get(Calendar.DAY_OF_WEEK) > 1){
             calendar.add(Calendar.DAY_OF_YEAR, -1);
         }
         for (DayOfWeek dayOfWeek: DayOfWeek.values()){
-            days.add(new Day(calendar.getTime(), dayOfWeek));
+            days.add(new Day((Calendar) calendar.clone(), dayOfWeek));
             calendar.add(Calendar.DAY_OF_YEAR, 1);
         }
     }
 
     public Week getNextWeek(){
-        Date last = days.getLast().getDate();
-        //get nex
-        return new Week();
+        Calendar newCalendar = (Calendar) days.getLast().getDate().clone();
+        newCalendar.add(Calendar.DAY_OF_YEAR, 1);
+        return new Week(newCalendar);
     }
 
     public boolean isWeekInNextMonth(){
-        System.out.println(days.getLast().getDay());
-        return days.getLast().getDay() < DAYS_IN_WEEK;
+        return days.getLast().getDayInMonth() < DAYS_IN_WEEK;
     }
 
     @Override

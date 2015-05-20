@@ -1,22 +1,22 @@
 package alex;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Day {
     private DayOfWeek type;
-    private Date date;
+    private Calendar date;
     private Week week;
 
-    Day(Date date, DayOfWeek type){
+    Day(Calendar date, DayOfWeek type){
         this.date = date;
         this.type = type;
     }
 
-    public int getDay(){
-        return date.getDate();
+    public int getDayInMonth(){
+        return date.get(Calendar.DAY_OF_MONTH);
     }
 
-    public Date getDate(){
+    public Calendar getDate(){
         return date;
     }
 
@@ -28,7 +28,7 @@ public class Day {
         }else {
             result = "\u001B[0m";
         }
-        result += date.getDate();
+        result += date.get(Calendar.DAY_OF_MONTH);
         System.out.println(date);
         return result;
     }

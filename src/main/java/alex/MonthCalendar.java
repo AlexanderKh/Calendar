@@ -1,14 +1,15 @@
 package alex;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 public class MonthCalendar {
-    private Date startingDate;
+    private Calendar startingDate;
     private LinkedList<Week> weeks;
 
-    MonthCalendar(Date firstDayOfMonth){
+    MonthCalendar(Calendar firstDayOfMonth){
         startingDate = firstDayOfMonth;
         weeks = new LinkedList<Week>();
         weeks.add(new Week(startingDate));
