@@ -5,7 +5,6 @@ import java.util.Calendar;
 public class Day {
     private DayOfWeek type;
     private Calendar date;
-    private Week week;
 
     Day(Calendar date, DayOfWeek type){
         this.date = date;
@@ -28,8 +27,7 @@ public class Day {
         }else {
             result = "\u001B[0m";
         }
-        result += date.get(Calendar.DAY_OF_MONTH);
-        System.out.println(date);
+        result += getDayInMonth();
         return result;
     }
 

@@ -1,29 +1,29 @@
 package alex;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 
 public class MonthCalendar {
-    private Calendar startingDate;
     private LinkedList<Week> weeks;
 
-    MonthCalendar(Calendar firstDayOfMonth){
-        startingDate = firstDayOfMonth;
+    MonthCalendar(Calendar startingDate){
         weeks = new LinkedList<Week>();
-        weeks.add(new Week(startingDate));
+        Week week = new Week(startingDate);
+        weeks.add(week);
         do {
-            weeks.add(weeks.getLast().getNextWeek());
-        } while ((!weeks.getLast().isWeekInNextMonth()));
+            week = week.getNextWeek();
+            weeks.add(week);
+        } while (week.inCurrentMonth());
     }
 
     @Override
     public String toString(){
         String result = "";
-        System.out.println(weeks.size());
+        for (DayOfWeek dayOfWeek: DayOfWeek.values()){
+            result += dayOfWeek.title() + "\t";
+        }
         for(Week week:weeks){
-            result += week.toString() + "\n\n";
+            result += "\n" + week.toString();
         }
         return result;
     }

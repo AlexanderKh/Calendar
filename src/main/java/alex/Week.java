@@ -1,7 +1,6 @@
 package alex;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class Week {
@@ -10,31 +9,40 @@ public class Week {
 
     Week(Calendar startingDate){
         days = new LinkedList<Day>();
-        Calendar calendar = startingDate;
-        while (calendar.get(Calendar.DAY_OF_WEEK) > 1){
-            calendar.add(Calendar.DAY_OF_YEAR, -1);
-        }
+        rewindToSunday(startingDate);
+        fillDaysList(startingDate);
+    }
+
+    private void fillDaysList(Calendar startingDate) {
         for (DayOfWeek dayOfWeek: DayOfWeek.values()){
-            days.add(new Day((Calendar) calendar.clone(), dayOfWeek));
-            calendar.add(Calendar.DAY_OF_YEAR, 1);
+            startingDate.add(Calendar.DAY_OF_YEAR, 1);
+            days.add(new Day((Calendar) startingDate.clone(), dayOfWeek));
+        }
+    }
+
+    private void rewindToSunday(Calendar calendar) {
+        while (calendar.get(Calendar.DAY_OF_WEEK) > calendar.getActualMinimum(Calendar.DAY_OF_WEEK)){
+            calendar.add(Calendar.DAY_OF_YEAR, -1);
         }
     }
 
     public Week getNextWeek(){
-        Calendar newCalendar = (Calendar) days.getLast().getDate().clone();
-        newCalendar.add(Calendar.DAY_OF_YEAR, 1);
-        return new Week(newCalendar);
+        Day lastDayInCurrentWeek = days.getLast();
+        Calendar nextWeekStartingDate = (Calendar) lastDayInCurrentWeek.getDate().clone();
+        nextWeekStartingDate.add(Calendar.DAY_OF_YEAR, 1);
+        return new Week(nextWeekStartingDate);
     }
 
-    public boolean isWeekInNextMonth(){
-        return days.getLast().getDayInMonth() < DAYS_IN_WEEK;
+    public boolean inCurrentMonth(){
+        return !(days.getLast().getDayInMonth() < DAYS_IN_WEEK);
     }
 
     @Override
     public String toString(){
         String result = "";
-        for (Day day:days)
+        for (Day day:days) {
             result += day.toString() + "\t";
+        }
         return result;
     }
 
