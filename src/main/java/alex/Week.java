@@ -22,10 +22,13 @@ public class Week {
     }
 
     public Week getNextWeek(){
-        return new Week(days.getLast().getDate());
+        Date last = days.getLast().getDate();
+        //get nex
+        return new Week();
     }
 
     public boolean isWeekInNextMonth(){
+        System.out.println(days.getLast().getDay());
         return days.getLast().getDay() < DAYS_IN_WEEK;
     }
 

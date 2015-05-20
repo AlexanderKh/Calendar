@@ -11,10 +11,10 @@ public class MonthCalendar {
     MonthCalendar(Date firstDayOfMonth){
         startingDate = firstDayOfMonth;
         weeks = new LinkedList<Week>();
-        weeks.add(new Week((Date)startingDate.clone()));
-        while (!weeks.getLast().isWeekInNextMonth()){
+        weeks.add(new Week(startingDate));
+        do {
             weeks.add(weeks.getLast().getNextWeek());
-        }
+        } while ((!weeks.getLast().isWeekInNextMonth()));
     }
 
     @Override

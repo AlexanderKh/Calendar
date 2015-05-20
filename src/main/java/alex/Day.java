@@ -13,7 +13,7 @@ public class Day {
     }
 
     public int getDay(){
-        return date.getDay();
+        return date.getDate();
     }
 
     public Date getDate(){
@@ -28,7 +28,8 @@ public class Day {
         }else {
             result = "\u001B[0m";
         }
-        result += date.getDay();
+        result += date.getDate();
+        System.out.println(date);
         return result;
     }
 
