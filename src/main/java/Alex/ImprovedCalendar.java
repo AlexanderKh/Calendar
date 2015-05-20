@@ -22,14 +22,14 @@ class ImprovedCalendar{
 	}
 
 	public static void showCalendar(Calendar calendar){
-		int month = calendar.get(Calendar.MONTH);
-		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		int monthInput = calendar.get(Calendar.MONTH);
+		int dayInput = calendar.get(Calendar.DAY_OF_MONTH);
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		rewindToSunday(calendar);
 		printHeaderColor();
-		while (isCurrentOrPreviousMonth(calendar, month)){
+		while (isCurrentOrPreviousMonth(calendar, monthInput)){
 			for (int j = 0; j < DAYS_IN_WEEK; j++){
-				colorSwitch(calendar, month, day);
+				colorSwitch(calendar, monthInput, dayInput);
 				System.out.print(calendar.get(Calendar.DAY_OF_MONTH) + "\t");
 				calendar.add(Calendar.DAY_OF_YEAR, 1);
 			}
@@ -39,12 +39,12 @@ class ImprovedCalendar{
 	}
 
 	public static boolean isCurrentOrPreviousMonth(Calendar calendar, int month){
-		int currentMonth = calendar.get(Calendar.MONTH);
-		if (month == currentMonth)
+		int calendarMonth = calendar.get(Calendar.MONTH);
+		if (month == calendarMonth)
 			return true;
-		if (month - 1 == currentMonth)
+		if (month - 1 == calendarMonth)
 			return true;
-		if (month == 0 && currentMonth == 11)
+		if (month == 0 && calendarMonth == 11)
 			return true;
 		return false;
 	}
