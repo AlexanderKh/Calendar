@@ -25,7 +25,7 @@ public class WierdClassForText implements WierdInterface{
             result += dayOfWeek + "\t";
         for (Week week : month.getWeeks())
             result += "\n" + week.toString();
-        result += DayOfWeek.BLACK;
+        result += BLACK;
         return result;
     }
 
