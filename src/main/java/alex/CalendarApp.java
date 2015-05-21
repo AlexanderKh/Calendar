@@ -15,13 +15,7 @@ public class CalendarApp {
         }
         date.setTime(inputReader.getFirstDayOfMonth(args));
         MonthCalendar calendar = new MonthCalendar(date, writeToHTML);
-        try {
-            PrintWriter fw = new PrintWriter("out.html");
-            fw.print(calendar.toString());
-            fw.close();
-        }catch (Exception e){
-            System.out.println("hello");
-        }
+        System.out.println(calendar.toString());
 
     }
 }
