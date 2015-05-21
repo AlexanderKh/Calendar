@@ -1,5 +1,7 @@
 package alex;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.Calendar;
 
 public class CalendarApp {
@@ -12,7 +14,14 @@ public class CalendarApp {
             writeToHTML = args[3].equals("HTML");
         }
         date.setTime(inputReader.getFirstDayOfMonth(args));
-        MonthCalendar calendar = new MonthCalendar(date,writeToHTML);
-        System.out.println(calendar);
+        MonthCalendar calendar = new MonthCalendar(date, writeToHTML);
+        try {
+            PrintWriter fw = new PrintWriter("out.html");
+            fw.print(calendar.toString());
+            fw.close();
+        }catch (Exception e){
+            System.out.println("hello");
+        }
+
     }
 }

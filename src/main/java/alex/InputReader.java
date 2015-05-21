@@ -2,16 +2,12 @@ package alex;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Scanner;
 
 public class InputReader {
     public Date getFirstDayOfMonth(String[] args){
         Date date = new Date();
         try{
-            if (args.length == 0)
-                date = interactiveInput();
-            else
-                date = parseConsoleInput(args);
+            date = parseConsoleInput(args);
         }catch(Exception e){
             System.out.println("Error");
         }
@@ -31,17 +27,6 @@ public class InputReader {
             }
 
         }
-    }
-
-    private Date interactiveInput() throws Exception{
-        int year, month;
-        Scanner in = new Scanner(System.in);
-        System.out.print("Input Year: ");
-        year = Integer.valueOf(in.next());
-        System.out.print("Input Month: ");
-        month = parseMonth(in.next());
-        in.close();
-        return new Date(year, month, 1);
     }
 
     private Date parseConsoleInput(String[] input) throws Exception{
