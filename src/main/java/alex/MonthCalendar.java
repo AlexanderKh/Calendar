@@ -55,14 +55,13 @@ public class MonthCalendar {
 
             result += "</table>";
         }else{
-
-
             for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
                 result += dayOfWeek + "\t";
             }
             for (Week week : weeks) {
                 result += "\n" + week.toString();
             }
+            result += DayOfWeek.BLACK;
         }
         return result;
     }

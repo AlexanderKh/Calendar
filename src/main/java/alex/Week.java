@@ -49,7 +49,7 @@ public class Week {
     public String toString(){
         String result = "";
         for (Day day:days) {
-            result += day.toString() + "\n";
+            result += day.toString() + "\t";
         }
         return result;
     }
