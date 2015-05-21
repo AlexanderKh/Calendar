@@ -30,7 +30,7 @@ public class Day {
     }
 
     public String toHTML(){
-        String result = "<td style='color:";
+        String result = "\t<td style='color:";
         result += type.weekendDay() ? "RED" : "BLACK";
         result += "'>" + getDayInMonth() + "</td>";
         return result;

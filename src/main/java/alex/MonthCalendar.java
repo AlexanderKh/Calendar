@@ -46,7 +46,7 @@ public class MonthCalendar {
             result += "<table border=2>\n";
             result += "\t<tr>\n";
             for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
-                result += "\t" + dayOfWeek.toHTML() + "\n";
+                result += "\t\t" + dayOfWeek.toHTML() + "\n";
             }
             result += "\t</tr>\n\n";
             for (Week week : weeks) {
