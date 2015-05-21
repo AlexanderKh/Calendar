@@ -32,7 +32,9 @@ public enum DayOfWeek {
     }
     @Override
     public String toString(){
-        return title;
+        String result = weekendDay ? "\u001B[31m" : "\u001B[0m";
+        result += title;
+        return result;
     }
 
 }

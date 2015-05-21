@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class InputReader {
-    static Date getFirstDayOfMonth(String[] args){
+    public Date getFirstDayOfMonth(String[] args){
         Date date = new Date();
         try{
             if (args.length == 0)
@@ -17,7 +17,7 @@ public class InputReader {
         return date;
     }
 
-    public static int parseMonth(String month) throws Exception{
+    private int parseMonth(String month) throws Exception{
         if (month.matches("\\d+")){
             return Integer.valueOf(month) - 1;
         }
@@ -51,28 +51,21 @@ public class InputReader {
         throw new Exception("Month conversion error");
     }
 
-    public static Date interactiveInput() throws Exception{
-        int year, month, day;
+    private Date interactiveInput() throws Exception{
+        int year, month;
         Scanner in = new Scanner(System.in);
         System.out.print("Input Year: ");
         year = Integer.valueOf(in.next());
         System.out.print("Input Month: ");
         month = parseMonth(in.next());
-//        System.out.print("Input Day: ");
-//        day = Integer.valueOf(in.next());
-//        while (day > 31 || day < 1){
-//            System.out.println("Wrong input, please try again: ");
-//            day = Integer.valueOf(in.next());
-//        }
         in.close();
         return new Date(year, month, 1);
     }
 
-    public static Date parseConsoleInput(String[] input) throws Exception{
-        int year, month, day;
+    private Date parseConsoleInput(String[] input) throws Exception{
+        int year, month;
         year = Integer.valueOf(input[0]);
         month = parseMonth(input[1]);
-//        day = Integer.valueOf(input[2]);
         return new Date(year, month, 1);
     }
 }

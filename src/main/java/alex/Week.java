@@ -26,15 +26,15 @@ public class Week {
         }
     }
 
-    public Week getNextWeek(){
+    public Week getNextWeek() {
         Day lastDayInCurrentWeek = days.getLast();
         Calendar nextWeekStartingDate = (Calendar) lastDayInCurrentWeek.getDate().clone();
         nextWeekStartingDate.add(Calendar.DAY_OF_YEAR, 1);
         return new Week(nextWeekStartingDate);
     }
 
-    public boolean inCurrentMonth(){
-        return !(days.getLast().getDayInMonth() < DAYS_IN_WEEK);
+    public int getMonthOfLastDay(){
+        return days.getLast().getDate().get(Calendar.MONTH);
     }
 
     @Override
