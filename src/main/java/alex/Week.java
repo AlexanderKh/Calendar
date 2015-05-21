@@ -28,14 +28,15 @@ public class Week {
 
     public Week getNextWeek() {
         Day lastDayInCurrentWeek = days.getLast();
-        Calendar nextWeekStartingDate = (Calendar) lastDayInCurrentWeek.getDate().clone();
+        Calendar nextWeekStartingDate = (Calendar) lastDayInCurrentWeek.getCalendar().clone();
         nextWeekStartingDate.add(Calendar.DAY_OF_YEAR, 1);
         return new Week(nextWeekStartingDate);
     }
 
-    public int getMonthOfLastDay(){
-        return days.getLast().getDate().get(Calendar.MONTH);
+    public Calendar getCalendarOfLastDay(){
+        return days.getLast().getCalendar();
     }
+
 
     @Override
     public String toString(){

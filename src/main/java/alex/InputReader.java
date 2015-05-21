@@ -1,5 +1,6 @@
 package alex;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -22,33 +23,14 @@ public class InputReader {
             return Integer.valueOf(month) - 1;
         }
         else{
-            String uppercaseMonth = month.toUpperCase();
-            if (uppercaseMonth.equals("JAN") || uppercaseMonth.equals("JANUARY"))
+            try{
+                return new SimpleDateFormat("MMM").parse(month).getMonth();
+            }catch (Exception e){
+                System.out.println("Month conversion error");
                 return 0;
-            if (uppercaseMonth.equals("FEB") || uppercaseMonth.equals("FEBRUARY"))
-                return 1;
-            if (uppercaseMonth.equals("MAR") || uppercaseMonth.equals("MARCH"))
-                return 2;
-            if (uppercaseMonth.equals("APR") || uppercaseMonth.equals("APRIL"))
-                return 3;
-            if (uppercaseMonth.equals("MAY"))
-                return 4;
-            if (uppercaseMonth.equals("JUN") || uppercaseMonth.equals("JUNE"))
-                return 5;
-            if (uppercaseMonth.equals("JUL") || uppercaseMonth.equals("JULY"))
-                return 6;
-            if (uppercaseMonth.equals("AUG") || uppercaseMonth.equals("AUGUST"))
-                return 7;
-            if (uppercaseMonth.equals("SEP") || uppercaseMonth.equals("SEPTEMBER"))
-                return 8;
-            if (uppercaseMonth.equals("OCT") || uppercaseMonth.equals("OCTOBER"))
-                return 9;
-            if (uppercaseMonth.equals("NOV") || uppercaseMonth.equals("NOVEMBER"))
-                return 10;
-            if (uppercaseMonth.equals("DEC") || uppercaseMonth.equals("DECEMBER"))
-                return 11;
+            }
+
         }
-        throw new Exception("Month conversion error");
     }
 
     private Date interactiveInput() throws Exception{

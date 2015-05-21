@@ -6,6 +6,9 @@ public class Day {
     private DayOfWeek type;
     private Calendar date;
 
+    public static final String RED = "\u001B[31m";
+    public static final String BLACK = "\u001B[0m";
+
     Day(Calendar date, DayOfWeek type){
         this.date = date;
         this.type = type;
@@ -15,7 +18,7 @@ public class Day {
         return date.get(Calendar.DAY_OF_MONTH);
     }
 
-    public Calendar getDate(){
+    public Calendar getCalendar(){
         return date;
     }
 
@@ -23,9 +26,9 @@ public class Day {
     public String toString(){
         String result;
         if (type.weekendDay()){
-            result = "\u001B[31m";
+            result = RED;
         }else {
-            result = "\u001B[0m";
+            result = BLACK;
         }
         result += getDayInMonth();
         return result;
