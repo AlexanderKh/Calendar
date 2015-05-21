@@ -4,32 +4,27 @@ import java.util.Calendar;
 
 public class Day {
     private DayOfWeek type;
-    private Calendar date;
+    private Calendar calendar;
 
     public static final String RED = "\u001B[31m";
     public static final String BLACK = "\u001B[0m";
 
-    Day(Calendar date, DayOfWeek type){
-        this.date = date;
+    Day(Calendar calendar, DayOfWeek type){
+        this.calendar = calendar;
         this.type = type;
     }
 
     public int getDayInMonth(){
-        return date.get(Calendar.DAY_OF_MONTH);
+        return calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     public Calendar getCalendar(){
-        return date;
+        return calendar;
     }
 
     @Override
     public String toString(){
-        String result;
-        if (type.weekendDay()){
-            result = RED;
-        }else {
-            result = BLACK;
-        }
+        String result = type.weekendDay() ? RED : BLACK;
         result += getDayInMonth();
         return result;
     }

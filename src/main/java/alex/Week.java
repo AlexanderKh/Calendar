@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.LinkedList;
 
 public class Week {
-    private static final int DAYS_IN_WEEK = 7;
     private LinkedList<Day> days;
 
     Week(Calendar startingDate){
@@ -21,9 +20,9 @@ public class Week {
     }
 
     private void rewindToSunday(Calendar calendar) {
-        while (calendar.get(Calendar.DAY_OF_WEEK) > calendar.getActualMinimum(Calendar.DAY_OF_WEEK)){
-            calendar.add(Calendar.DAY_OF_YEAR, -1);
-        }
+        int difference = calendar.getActualMinimum(Calendar.DAY_OF_WEEK) - calendar.get(Calendar.DAY_OF_WEEK);
+        if (difference != 0)
+            calendar.add(Calendar.DAY_OF_YEAR, difference);
     }
 
     public Week getNextWeek() {
@@ -36,7 +35,6 @@ public class Week {
     public Calendar getCalendarOfLastDay(){
         return days.getLast().getCalendar();
     }
-
 
     @Override
     public String toString(){
