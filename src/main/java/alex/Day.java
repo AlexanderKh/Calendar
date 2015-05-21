@@ -29,4 +29,11 @@ public class Day {
         return result;
     }
 
+    public String toHTML(){
+        String result = "<td style='color:";
+        result += type.weekendDay() ? "RED" : "BLACK";
+        result += "'>" + getDayInMonth() + "</td>";
+        return result;
+    }
+
 }

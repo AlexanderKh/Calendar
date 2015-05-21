@@ -36,11 +36,20 @@ public class Week {
         return days.getLast().getCalendar();
     }
 
+    public String toHTML(){
+        String result = "<tr>\n\t";
+        for (Day day:days) {
+            result += day.toHTML() + "\n\t";
+        }
+        result += "</tr>\n";
+        return result;
+    }
+
     @Override
     public String toString(){
         String result = "";
         for (Day day:days) {
-            result += day.toString() + "\t";
+            result += day.toString() + "\n";
         }
         return result;
     }

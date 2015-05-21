@@ -7,7 +7,7 @@ public class CalendarApp {
         Calendar date = Calendar.getInstance();
         InputReader inputReader = new InputReader();
         date.setTime(inputReader.getFirstDayOfMonth(args));
-        MonthCalendar calendar = new MonthCalendar(date);
+        MonthCalendar calendar = new MonthCalendar(date,true);
         System.out.println(calendar);
     }
 }

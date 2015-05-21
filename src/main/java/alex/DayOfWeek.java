@@ -40,4 +40,11 @@ public enum DayOfWeek {
         return result;
     }
 
+    public String toHTML(){
+        String result = "<th color = ";
+        result += weekendDay ? "RED" : "BLACK";
+        result += ">" + title + "</th>";
+        return result;
+    }
+
 }

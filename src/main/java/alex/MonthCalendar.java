@@ -6,8 +6,10 @@ import java.util.LinkedList;
 public class MonthCalendar {
     private LinkedList<Week> weeks;
     private Calendar dateToShow;
+    private boolean toHTML;
 
-    MonthCalendar(Calendar startingDate){
+    MonthCalendar(Calendar startingDate, boolean toHTML){
+        this.toHTML = toHTML;
         dateToShow = (Calendar)startingDate.clone();
         weeks = new LinkedList<Week>();
         Week week = new Week(startingDate);
@@ -39,11 +41,28 @@ public class MonthCalendar {
     @Override
     public String toString(){
         String result = "";
-        for (DayOfWeek dayOfWeek : DayOfWeek.values()){
-            result += dayOfWeek + "\t";
-        }
-        for(Week week : weeks){
-            result += "\n" + week.toString();
+
+        if (toHTML){
+            result += "<table border=2>\n";
+            result += "\t<tr>\n";
+            for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
+                result += "\t" + dayOfWeek.toHTML() + "\n";
+            }
+            result += "\t</tr>\n\n";
+            for (Week week : weeks) {
+                result += "\t" + week.toHTML() + "\n";
+            }
+
+            result += "</table>";
+        }else{
+
+
+            for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
+                result += dayOfWeek + "\t";
+            }
+            for (Week week : weeks) {
+                result += "\n" + week.toString();
+            }
         }
         return result;
     }
