@@ -35,16 +35,6 @@ public enum DayOfWeek {
     }
     @Override
     public String toString(){
-        String result = weekendDay ? RED : BLACK;
-        result += title;
-        return result;
+        return CalendarApp.outMethod.getFormattedDayOfWeek(this);
     }
-
-    public String toHTML(){
-        String result = "<th style='color:";
-        result += weekendDay ? "RED" : "BLACK";
-        result += "'>" + title + "</th>";
-        return result;
-    }
-
 }

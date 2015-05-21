@@ -8,6 +8,7 @@ public class MonthCalendar {
     private Calendar dateToShow;
     private boolean toHTML;
 
+
     MonthCalendar(Calendar startingDate, boolean toHTML){
         this.toHTML = toHTML;
         dateToShow = (Calendar)startingDate.clone();
@@ -40,29 +41,10 @@ public class MonthCalendar {
 
     @Override
     public String toString(){
-        String result = "";
+        return CalendarApp.outMethod.getFormattedMonth(this);
+    }
 
-        if (toHTML){
-            result += "<table border=2>\n";
-            result += "\t<tr>\n";
-            for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
-                result += "\t\t" + dayOfWeek.toHTML() + "\n";
-            }
-            result += "\t</tr>\n\n";
-            for (Week week : weeks) {
-                result += "\t" + week.toHTML() + "\n";
-            }
-
-            result += "</table>";
-        }else{
-            for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
-                result += dayOfWeek + "\t";
-            }
-            for (Week week : weeks) {
-                result += "\n" + week.toString();
-            }
-            result += DayOfWeek.BLACK;
-        }
-        return result;
+    public LinkedList<Week> getWeeks() {
+        return weeks;
     }
 }

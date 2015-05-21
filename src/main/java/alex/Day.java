@@ -22,18 +22,12 @@ public class Day {
         return calendar;
     }
 
+    public DayOfWeek getType() {
+        return type;
+    }
+
     @Override
     public String toString(){
-        String result = type.weekendDay() ? RED : BLACK;
-        result += getDayInMonth();
-        return result;
+        return CalendarApp.outMethod.getFormattedDay(this);
     }
-
-    public String toHTML(){
-        String result = "\t<td style='color:";
-        result += type.weekendDay() ? "RED" : "BLACK";
-        result += "'>" + getDayInMonth() + "</td>";
-        return result;
-    }
-
 }

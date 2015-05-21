@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.LinkedList;
 
 public class Week {
+
+
     private LinkedList<Day> days;
 
     Week(Calendar startingDate){
@@ -36,22 +38,13 @@ public class Week {
         return days.getLast().getCalendar();
     }
 
-    public String toHTML(){
-        String result = "<tr>\n\t";
-        for (Day day:days) {
-            result += day.toHTML() + "\n\t";
-        }
-        result += "</tr>\n";
-        return result;
-    }
-
     @Override
     public String toString(){
-        String result = "";
-        for (Day day:days) {
-            result += day.toString() + "\t";
-        }
-        return result;
+        return CalendarApp.outMethod.getFormattedWeek(this);
+    }
+
+    public LinkedList<Day> getDays() {
+        return days;
     }
 
 }
