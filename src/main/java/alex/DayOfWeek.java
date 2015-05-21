@@ -12,9 +12,6 @@ public enum DayOfWeek {
     FRIDAY("Fri", Calendar.FRIDAY, false),
     SATURDAY("Sat", Calendar.SATURDAY, true);
 
-    public static final String RED = "\u001B[31m";
-    public static final String BLACK = "\u001B[0m";
-
     private final String title;
     private final int id;
     private final boolean weekendDay;

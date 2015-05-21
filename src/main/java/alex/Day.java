@@ -6,9 +6,6 @@ public class Day {
     private DayOfWeek type;
     private Calendar calendar;
 
-    public static final String RED = "\u001B[31m";
-    public static final String BLACK = "\u001B[0m";
-
     Day(Calendar calendar, DayOfWeek type){
         this.calendar = calendar;
         this.type = type;
