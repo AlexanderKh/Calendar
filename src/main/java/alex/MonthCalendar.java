@@ -6,11 +6,9 @@ import java.util.LinkedList;
 public class MonthCalendar {
     private LinkedList<Week> weeks;
     private Calendar dateToShow;
-    private boolean toHTML;
 
 
-    MonthCalendar(Calendar startingDate, boolean toHTML){
-        this.toHTML = toHTML;
+    MonthCalendar(Calendar startingDate){
         dateToShow = (Calendar)startingDate.clone();
         weeks = new LinkedList<Week>();
         Week week = new Week(startingDate);
