@@ -1,6 +1,6 @@
 package alex;
 
-public interface WierdInterface {
+public interface MonthFormatter {
     String getFormattedDay(Day day);
     String getFormattedWeek(Week week);
     String getFormattedMonth(MonthCalendar month);

@@ -1,6 +1,6 @@
 package alex;
 
-public class WierdClassForText implements WierdInterface{
+public class MonthTextFormatter implements MonthFormatter {
 
     public static final String RED = "\u001B[31m";
     public static final String BLACK = "\u001B[0m";
@@ -9,6 +9,7 @@ public class WierdClassForText implements WierdInterface{
         DayOfWeek type = day.getType();
         String result = type.weekendDay() ? RED : BLACK;
         result += day.getDayInMonth();
+
         return result;
     }
 
@@ -16,6 +17,7 @@ public class WierdClassForText implements WierdInterface{
         String result = "";
         for (Day day : week.getDays())
             result += day.toString() + "\t";
+
         return result;
     }
 
@@ -26,12 +28,14 @@ public class WierdClassForText implements WierdInterface{
         for (Week week : month.getWeeks())
             result += "\n" + week.toString();
         result += BLACK;
+
         return result;
     }
 
     public String getFormattedDayOfWeek(DayOfWeek dayOfWeek) {
         String result = dayOfWeek.weekendDay() ? RED : BLACK;
         result += dayOfWeek.title();
+
         return result;
     }
 }

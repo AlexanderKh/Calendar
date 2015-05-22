@@ -1,12 +1,13 @@
 package alex;
 
-public class WierdClassForHTML implements WierdInterface{
+public class MonthHTMLFormatter implements MonthFormatter {
 
     public String getFormattedDay(Day day){
         DayOfWeek type = day.getType();
         String result = "\t<td style='color:";
         result += type.weekendDay() ? "RED" : "BLACK";
         result += "'>" + day.getDayInMonth() + "</td>";
+
         return result;
     }
 
@@ -16,6 +17,7 @@ public class WierdClassForHTML implements WierdInterface{
             result += day + "\n\t";
         }
         result += "</tr>\n";
+
         return result;
     }
 
@@ -29,6 +31,7 @@ public class WierdClassForHTML implements WierdInterface{
         for (Week week : month.getWeeks())
             result += "\t" + week + "\n";
         result += "</table>";
+
         return result;
     }
 
@@ -36,6 +39,7 @@ public class WierdClassForHTML implements WierdInterface{
         String result = "<th style='color:";
         result += dayOfWeek.weekendDay() ? "RED" : "BLACK";
         result += "'>" + dayOfWeek.title() + "</th>";
+
         return result;
     }
 }
