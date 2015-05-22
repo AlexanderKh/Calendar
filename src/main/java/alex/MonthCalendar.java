@@ -39,7 +39,7 @@ public class MonthCalendar {
 
     @Override
     public String toString(){
-        return CalendarApp.outMethod.getFormattedMonth(this);
+        return null;
     }
 
     public LinkedList<Week> getWeeks() {

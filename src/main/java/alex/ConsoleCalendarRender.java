@@ -1,11 +1,17 @@
 package alex;
 
-public class MonthTextFormatter implements MonthFormatter {
+public class ConsoleCalendarRender  implements CalendarRender{
 
     public static final String RED = "\u001B[31m";
     public static final String BLACK = "\u001B[0m";
+    public static final String TAB = "\t";
+    public static final String NL = "\n";
 
-    public String getFormattedDay(Day day){
+    public String render(MonthCalendar monthCalendar) {
+        return renderMonth(monthCalendar);
+    }
+
+    private String renderDay(Day day){
         DayOfWeek type = day.getType();
         String result = type.weekendDay() ? RED : BLACK;
         result += day.getDayInMonth();
@@ -13,29 +19,30 @@ public class MonthTextFormatter implements MonthFormatter {
         return result;
     }
 
-    public String getFormattedWeek(Week week){
+    private String renderWeek(Week week){
         String result = "";
         for (Day day : week.getDays())
-            result += day.toString() + "\t";
+            result += renderDay(day) + TAB;
 
         return result;
     }
 
-    public String getFormattedMonth(MonthCalendar month){
+    private String renderMonth(MonthCalendar month){
         String result = "";
         for (DayOfWeek dayOfWeek : DayOfWeek.values())
-            result += dayOfWeek + "\t";
+            result += renderDayOfWeek(dayOfWeek) + TAB;
         for (Week week : month.getWeeks())
-            result += "\n" + week.toString();
+            result += NL + renderWeek(week);
         result += BLACK;
 
         return result;
     }
 
-    public String getFormattedDayOfWeek(DayOfWeek dayOfWeek) {
+    private String renderDayOfWeek(DayOfWeek dayOfWeek) {
         String result = dayOfWeek.weekendDay() ? RED : BLACK;
         result += dayOfWeek.title();
 
         return result;
     }
+
 }

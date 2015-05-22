@@ -32,6 +32,6 @@ public enum DayOfWeek {
     }
     @Override
     public String toString(){
-        return CalendarApp.outMethod.getFormattedDayOfWeek(this);
+        return null;
     }
 }

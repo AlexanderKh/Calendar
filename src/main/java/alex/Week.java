@@ -40,7 +40,7 @@ public class Week {
 
     @Override
     public String toString(){
-        return CalendarApp.outMethod.getFormattedWeek(this);
+        return null;
     }
 
     public LinkedList<Day> getDays() {
