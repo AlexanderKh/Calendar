@@ -37,11 +37,6 @@ public class MonthCalendar {
         return calendar.get(Calendar.DAY_OF_MONTH) == calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
-    @Override
-    public String toString(){
-        return null;
-    }
-
     public LinkedList<Week> getWeeks() {
         return weeks;
     }

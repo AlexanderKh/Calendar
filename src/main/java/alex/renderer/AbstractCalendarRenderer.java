@@ -1,10 +1,16 @@
-package alex;
+package alex.renderer;
 
-public abstract class CalendarRender {
+import alex.Day;
+import alex.DayOfWeek;
+import alex.MonthCalendar;
+import alex.Week;
+
+public abstract class AbstractCalendarRenderer {
 
     protected static final String EMPTY = "";
+    protected static final String NEW_LINE = "\n";
 
-    String render(MonthCalendar monthCalendar){
+    public String render(MonthCalendar monthCalendar){
         String result = EMPTY;
         result += openMonthToken();
         result += printHeader();
@@ -23,6 +29,7 @@ public abstract class CalendarRender {
             result += closeDayOfWeekToken();
         }
         result += closeWeekToken();
+
         return result;
     }
 
@@ -33,6 +40,7 @@ public abstract class CalendarRender {
             result += printDays(week);
             result += closeWeekToken();
         }
+
         return result;
     }
 
@@ -43,6 +51,7 @@ public abstract class CalendarRender {
             result += day.getDayInMonth();
             result += closeDayToken();
         }
+
         return result;
     }
 

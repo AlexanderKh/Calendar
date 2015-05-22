@@ -1,9 +1,9 @@
-package alex;
+package alex.renderer;
 
-public class HTMLCalendarRender extends CalendarRender {
+import alex.DayOfWeek;
 
-    private static final String TAB = "\t";
-    private static final String NL = "\n";
+public class HTMLCalendarRenderer extends AbstractCalendarRenderer {
+
     private static final String TR = "tr";
     private static final String OPEN_TAG = "<";
     private static final String CLOSE_TAG = ">";
@@ -15,32 +15,16 @@ public class HTMLCalendarRender extends CalendarRender {
     private static final String TH = "th";
     private static final String SPACE = " ";
     private static final String QUOTE = "'";
-
-
-    private String appendTag(String contents, String tag) {
-        String result = EMPTY;
-        result += OPEN_TAG + tag + CLOSE_TAG;
-        result += contents;
-        result += END_TAG + tag + CLOSE_TAG + NL;
-        return result;
-    }
-
-    private String appendTag(String contents, String tag, String tagParam) {
-        String result = EMPTY;
-        result += OPEN_TAG + tag + SPACE + tagParam + CLOSE_TAG;
-        result += contents;
-        result += END_TAG + tag + CLOSE_TAG + NL;
-        return result;
-    }
+    public static final String TABLE_BORDER = "border = 1";
 
     @Override
     String openMonthToken() {
-        return OPEN_TAG + TABLE + SPACE + "border = 1" + CLOSE_TAG + NL;
+        return OPEN_TAG + TABLE + SPACE + TABLE_BORDER + CLOSE_TAG + NEW_LINE;
     }
 
     @Override
     String closeMonthToken() {
-        return END_TAG + TABLE + CLOSE_TAG + NL;
+        return END_TAG + TABLE + CLOSE_TAG + NEW_LINE;
     }
 
     @Override
@@ -50,17 +34,17 @@ public class HTMLCalendarRender extends CalendarRender {
 
     @Override
     String closeDayOfWeekToken() {
-        return END_TAG + TH + CLOSE_TAG + NL;
+        return END_TAG + TH + CLOSE_TAG + NEW_LINE;
     }
 
     @Override
     String openWeekToken() {
-        return OPEN_TAG + TR + CLOSE_TAG + NL;
+        return OPEN_TAG + TR + CLOSE_TAG + NEW_LINE;
     }
 
     @Override
     String closeWeekToken() {
-        return END_TAG + TR + CLOSE_TAG + NL;
+        return END_TAG + TR + CLOSE_TAG + NEW_LINE;
     }
 
     @Override
@@ -69,11 +53,12 @@ public class HTMLCalendarRender extends CalendarRender {
         result += dayOfWeek.weekendDay() ? RED : BLACK;
         result += QUOTE;
         result += CLOSE_TAG;
+
         return result;
     }
 
     @Override
     String closeDayToken() {
-        return END_TAG + TD + CLOSE_TAG + NL;
+        return END_TAG + TD + CLOSE_TAG + NEW_LINE;
     }
 }

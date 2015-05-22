@@ -23,24 +23,21 @@ public class Week {
 
     private void rewindToSunday(Calendar calendar) {
         int difference = calendar.getActualMinimum(Calendar.DAY_OF_WEEK) - calendar.get(Calendar.DAY_OF_WEEK);
-        if (difference != 0)
-            calendar.add(Calendar.DAY_OF_YEAR, difference);
+        if (difference == 0) return;
+
+        calendar.add(Calendar.DAY_OF_YEAR, difference);
     }
 
     public Week getNextWeek() {
         Day lastDayInCurrentWeek = days.getLast();
         Calendar nextWeekStartingDate = (Calendar) lastDayInCurrentWeek.getCalendar().clone();
         nextWeekStartingDate.add(Calendar.DAY_OF_YEAR, 1);
+
         return new Week(nextWeekStartingDate);
     }
 
     public Calendar getCalendarOfLastDay(){
         return days.getLast().getCalendar();
-    }
-
-    @Override
-    public String toString(){
-        return null;
     }
 
     public LinkedList<Day> getDays() {

@@ -18,21 +18,18 @@ public class InputReader {
         if (month.matches("\\d+")){
             return Integer.valueOf(month) - 1;
         }
-        else{
-            try{
-                return new SimpleDateFormat("MMM").parse(month).getMonth();
-            }catch (Exception e){
-                System.out.println("Month conversion error");
-                return 0;
-            }
-
+        try{
+            return new SimpleDateFormat("MMM").parse(month).getMonth();
+        }catch (Exception e){
+            System.out.println("Month conversion error");
+            return 0;
         }
     }
 
     private Date parseConsoleInput(String[] input) throws Exception{
         int year, month;
-        year = Integer.valueOf(input[0]);
-        month = parseMonth(input[1]);
+        year = Integer.valueOf(input[CalendarApp.ARGS_NUM_OF_YEAR]);
+        month = parseMonth(input[CalendarApp.ARGS_NUM_OF_MONTH]);
         return new Date(year, month, 1);
     }
 }

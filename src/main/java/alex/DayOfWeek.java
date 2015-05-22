@@ -30,8 +30,5 @@ public enum DayOfWeek {
     public boolean weekendDay(){
         return weekendDay;
     }
-    @Override
-    public String toString(){
-        return null;
-    }
+
 }

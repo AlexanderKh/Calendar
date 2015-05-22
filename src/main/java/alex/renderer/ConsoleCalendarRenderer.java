@@ -1,17 +1,18 @@
-package alex;
+package alex.renderer;
 
-public class ConsoleCalendarRender extends CalendarRender{
+import alex.DayOfWeek;
+
+public class ConsoleCalendarRenderer extends AbstractCalendarRenderer {
 
     private static final String RED = "\u001B[31m";
     private static final String BLACK = "\u001B[0m";
     private static final String TAB = "\t";
-    private static final String NL = "\n";
 
 
 
     @Override
     String openMonthToken() {
-        return NL;
+        return NEW_LINE;
     }
 
     @Override
@@ -36,7 +37,7 @@ public class ConsoleCalendarRender extends CalendarRender{
 
     @Override
     String closeWeekToken() {
-        return NL;
+        return NEW_LINE;
     }
 
     @Override

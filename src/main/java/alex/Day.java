@@ -23,8 +23,4 @@ public class Day {
         return type;
     }
 
-    @Override
-    public String toString(){
-        return null;
-    }
 }
