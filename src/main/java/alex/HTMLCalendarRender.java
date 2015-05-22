@@ -13,9 +13,8 @@ public class HTMLCalendarRender extends CalendarRender {
     private static final String END_TAG = "</";
     private static final String TD = "td";
     private static final String TH = "th";
-    private static final String EMPTY = "";
     private static final String SPACE = " ";
-    public static final String QUOTE = "'";
+    private static final String QUOTE = "'";
 
 
     private String appendTag(String contents, String tag) {

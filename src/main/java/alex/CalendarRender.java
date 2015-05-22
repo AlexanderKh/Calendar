@@ -1,19 +1,21 @@
 package alex;
 
 public abstract class CalendarRender {
+
+    protected static final String EMPTY = "";
+
     String render(MonthCalendar monthCalendar){
-        String result = openMonthToken();
-
-        result = printHeader(result);
-
-        result = printWeek(monthCalendar, result);
-
+        String result = EMPTY;
+        result += openMonthToken();
+        result += printHeader();
+        result += printWeeks(monthCalendar);
         result += closeMonthToken();
 
         return result;
     }
 
-    private String printHeader(String result) {
+    private String printHeader() {
+        String result = EMPTY;
         result += openWeekToken();
         for (DayOfWeek dayOfWeek : DayOfWeek.values()){
             result += openDayOfWeekToken();
@@ -24,16 +26,18 @@ public abstract class CalendarRender {
         return result;
     }
 
-    private String printWeek(MonthCalendar monthCalendar, String result) {
+    private String printWeeks(MonthCalendar monthCalendar) {
+        String result = EMPTY;
         for (Week week : monthCalendar.getWeeks()){
             result += openWeekToken();
-            result = printDay(result, week);
+            result += printDays(week);
             result += closeWeekToken();
         }
         return result;
     }
 
-    private String printDay(String result, Week week) {
+    private String printDays(Week week) {
+        String result = EMPTY;
         for (Day day : week.getDays()){
             result += openDayToken(day.getType());
             result += day.getDayInMonth();

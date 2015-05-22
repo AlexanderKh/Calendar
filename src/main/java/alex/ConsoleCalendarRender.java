@@ -6,7 +6,6 @@ public class ConsoleCalendarRender extends CalendarRender{
     private static final String BLACK = "\u001B[0m";
     private static final String TAB = "\t";
     private static final String NL = "\n";
-    private static final String EMPTY = "";
 
 
 
