@@ -21,6 +21,7 @@ public class CalendarApp {
             date.setTime(inputReader.getFirstDayOfMonth(args));
             MonthCalendar calendar = new MonthCalendar(date);
             System.out.println(calendar.toString());
-        }
+        } else
+            System.out.println("Please enter right arguments: YYYY MMM --out [HTML][TEXT]");
     }
 }
