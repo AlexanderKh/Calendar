@@ -29,9 +29,9 @@ public class CalendarWriter {
             calendar.add(Calendar.YEAR, -1900);
             monthCalendars.add(new MonthCalendar(calendar));
         }
-        MonthCalendar prevMonth = null;
-        MonthCalendar nextMonth = null;
-        MonthCalendar currentMonth = null;
+        MonthCalendar prevMonth;
+        MonthCalendar nextMonth;
+        MonthCalendar currentMonth;
         for (int i = 0; i < monthCalendars.size(); i++) {
             prevMonth = (i - 1 >= 0) ? monthCalendars.get(i - 1) : null;
             currentMonth = monthCalendars.get(i);
@@ -44,11 +44,13 @@ public class CalendarWriter {
         String result = "";
         if (previousMonth != null)
             result += "Prev month: <a href = '../" + previousMonth.getYear() + PATH_SEPARATOR + previousMonth.getMonthTitle() + HTML + "'>"
-                    + previousMonth.getYear() + " " + previousMonth.getMonthTitle() + "</a>" + NEW_LINE;
+                    + previousMonth.getYear() + " " + previousMonth.getMonthTitle()
+                    + "</a>" + NEW_LINE;
         result += "<br>";
         if (nextMonth != null)
             result += "Next month: <a href = '../" + nextMonth.getYear() + PATH_SEPARATOR + nextMonth.getMonthTitle() + HTML + "'>"
-                    + nextMonth.getYear() + " " + nextMonth.getMonthTitle() + "</a>" + NEW_LINE;
+                    + nextMonth.getYear() + " " + nextMonth.getMonthTitle()
+                    + "</a>" + NEW_LINE;
         result += "<br>";
         result += renderer.render(currentMonth);
         try {

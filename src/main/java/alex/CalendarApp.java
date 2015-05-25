@@ -14,7 +14,6 @@ public class CalendarApp {
 
     public static void main(String[] args){
         renderer = new HTMLCalendarRenderer();
-        Calendar date = Calendar.getInstance();
         InputReader inputReader = new InputReader();
         File file = new File("/home/employee/Documents/input.txt");
         List<Date> dates = null;
