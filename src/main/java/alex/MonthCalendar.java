@@ -2,14 +2,15 @@ package alex;
 
 import java.util.Calendar;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class MonthCalendar {
     private LinkedList<Week> weeks;
     private Calendar dateToShow;
 
-
     MonthCalendar(Calendar startingDate){
         dateToShow = (Calendar)startingDate.clone();
+        dateToShow.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
         weeks = new LinkedList<Week>();
         Week week = new Week(startingDate);
         weeks.add(week);
@@ -35,6 +36,14 @@ public class MonthCalendar {
 
     private boolean lastDayOfCurrentMonth(Calendar calendar){
         return calendar.get(Calendar.DAY_OF_MONTH) == calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+    }
+
+    public String getMonthTitle(){
+        return dateToShow.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+    }
+
+    public String getYear(){
+        return String.valueOf(dateToShow.get(Calendar.YEAR));
     }
 
     public LinkedList<Week> getWeeks() {
