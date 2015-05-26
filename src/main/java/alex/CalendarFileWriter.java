@@ -17,7 +17,7 @@ public class CalendarFileWriter {
         this.path = path;
     }
 
-    public void generateFilesForCalendarSet(CalendarSet<MonthCalendar> monthCalendars){
+    public void generateFilesForCalendarSet(NavigableList<MonthCalendar> monthCalendars){
         clearPath(path);
         path.mkdir();
         for (int i = 0; i < monthCalendars.size(); i++) {

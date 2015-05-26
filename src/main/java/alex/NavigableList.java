@@ -2,7 +2,7 @@ package alex;
 
 import java.util.ArrayList;
 
-public class CalendarSet<T> extends ArrayList<T> {
+public class NavigableList<T> extends ArrayList<T> {
     public T getPreviousFor(int i){
         return (i > 0) ? get(i - 1) : null;
     }

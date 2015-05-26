@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
 
 public class CalendarApp {
     public static AbstractCalendarRenderer renderer;
@@ -16,13 +17,13 @@ public class CalendarApp {
         InputReader inputReader = new InputReader();
         File input = new File("/home/employee/Documents/input.txt");
         File output = new File("/home/employee/Documents/output/");
-        CalendarSet<MonthCalendar> monthCalendars = null;
+        NavigableList<MonthCalendar> monthCalendars = null;
         try {
-            CalendarSet<Calendar> calendars = inputReader.getFirstDatesFromFile(input);
-            Collections.sort(calendars);
-            monthCalendars = new CalendarSet<MonthCalendar>();
-            for (Calendar calendar : calendars){
-                monthCalendars.add(new MonthCalendar(calendar));
+            List<Year> years = inputReader.readYears(input);
+            Collections.sort(years);
+            monthCalendars = new NavigableList<MonthCalendar>();
+            for (Year year : years){
+                monthCalendars.addAll(year.getMonthCalendars());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
