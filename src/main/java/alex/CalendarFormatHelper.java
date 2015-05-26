@@ -26,14 +26,17 @@ public class CalendarFormatHelper {
         result += TAG_OPEN + tag + SPACE + tagParam + TAG_CLOSE;
         result += contents;
         result += TAG_END + tag + TAG_CLOSE + NEW_LINE;
+
         return result;
     }
 
     private String generateHRef(MonthCalendar monthCalendar){
         if (monthCalendar == null) return EMPTY;
         String result = appendTag(monthCalendar.getYear() + SPACE + monthCalendar.getMonthTitle(),
-                LINK_TAG, HREF + BRACE + UPPER_FOLDER + File.separator + getRelativeFilenameForMonth(monthCalendar) + BRACE);
+                LINK_TAG,
+                HREF + BRACE + UPPER_FOLDER + File.separator + getRelativeFilenameForMonth(monthCalendar) + BRACE);
         result += NEW_LINE;
+
         return result;
     }
 
