@@ -17,8 +17,8 @@ public class CalendarApp {
     public static void main(String[] args){
         renderer = new HTMLCalendarRenderer();
         InputReader inputReader = new InputReader();
-        File input = new File("C:\\Users\\Admin4ik\\Desktop\\input.txt");
-        File output = new File("C:\\Users\\Admin4ik\\Desktop\\output\\");
+        File input = new File("/home/employee/Documents/input.txt");
+        File output = new File("/home/employee/Documents/output/");
         CalendarSet<MonthCalendar> monthCalendars = null;
         try {
             CalendarSet<Calendar> calendars = inputReader.getFirstDatesFromFile(input);

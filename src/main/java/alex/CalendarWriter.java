@@ -17,6 +17,11 @@ public class CalendarWriter {
     private static final String TAG_CLOSE = ">";
     private static final String TAG_END = "</";
     private static final String BR = "<br>";
+    private static final String LINK_TAG = "a";
+    private static final String HREF = " href = ";
+    private static final String SPACE = " ";
+    private static final String UPPER_FOLDER = "..";
+
     private AbstractCalendarRenderer renderer;
     private File path;
 
@@ -27,10 +32,27 @@ public class CalendarWriter {
 
     public void generateFilesForCalendarSet(CalendarSet<MonthCalendar> monthCalendars){
         clearPath(path);
+        path.mkdir();
         for (int i = 0; i < monthCalendars.size(); i++) {
-            printMonthToFile(monthCalendars.getPreviousFor(i),
-                            monthCalendars.get(i),
-                            monthCalendars.getNextFor(i));
+            String currentMonthString = formatMonthCalendarToHTML(monthCalendars.getPreviousFor(i),
+                                                                monthCalendars.get(i),
+                                                                monthCalendars.getNextFor(i));
+            String currentMonthFilepath = getRelativeFilenameForMonth(monthCalendars.get(i));
+            writeMonthToFile(currentMonthFilepath, currentMonthString);
+        }
+    }
+
+    private void writeMonthToFile(String filepath, String representation){
+        try {
+            File file = new File(path.getAbsolutePath() + SLASH + filepath);
+            file.getParentFile().mkdirs();
+            file.createNewFile();
+            Writer out = new FileWriter(file);
+            out.write(representation);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -40,41 +62,33 @@ public class CalendarWriter {
                 clearPath(subPath);
         }
         path.delete();
-        path.mkdir();
     }
 
-    private String generatehref(MonthCalendar monthCalendar){
+    private String generateHRef(MonthCalendar monthCalendar){
         String result = EMPTY;
-        result += TAG_OPEN + "a href = ";
-        result += BRACE + ".." + SLASH + monthCalendar.getYear() + SLASH + monthCalendar.getMonthTitle() + HTML + BRACE + TAG_CLOSE;
-        result += monthCalendar.getYear() + " " + monthCalendar.getMonthTitle();
-        result += TAG_END + "a" + TAG_CLOSE;
+        result += TAG_OPEN + LINK_TAG + HREF;
+        result += BRACE + UPPER_FOLDER + SLASH + getRelativeFilenameForMonth(monthCalendar) + BRACE + TAG_CLOSE;
+        result += monthCalendar.getYear() + SPACE + monthCalendar.getMonthTitle();
+        result += TAG_END + LINK_TAG + TAG_CLOSE;
         result += NEW_LINE;
+        return result;
+    }
+
+    private String formatMonthCalendarToHTML(MonthCalendar previousMonth, MonthCalendar currentMonth, MonthCalendar nextMonth){
+        String result = "";
+        if (previousMonth != null)
+            result += generateHRef(previousMonth);
+        result += BR;
+        if (nextMonth != null)
+            result += generateHRef(nextMonth);
+        result += BR;
+        result += renderer.render(currentMonth);
 
         return result;
     }
 
-    private void printMonthToFile(MonthCalendar previousMonth, MonthCalendar currentMonth, MonthCalendar nextMonth){
-        String result = "";
-        if (previousMonth != null)
-            result += generatehref(previousMonth);
-        result += BR;
-        if (nextMonth != null)
-            result += generatehref(nextMonth);
-        result += BR;
-        result += renderer.render(currentMonth);
-        try {
-            File yearDirectory = new File(path.getAbsolutePath() + SLASH + currentMonth.getYear());
-            yearDirectory.mkdirs();
-            File monthHTML = new File(path.getAbsolutePath() + SLASH + currentMonth.getYear() + SLASH + currentMonth.getMonthTitle() + HTML);
-            monthHTML.createNewFile();
-            Writer out = new FileWriter(monthHTML);
-            out.write(result);
-            out.flush();
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    private String getRelativeFilenameForMonth(MonthCalendar monthCalendar){
+        return monthCalendar.getYear() + SLASH + monthCalendar.getMonthNumber()
+                + SPACE + monthCalendar.getMonthTitle() + HTML;
     }
 }
