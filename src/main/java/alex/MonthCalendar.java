@@ -39,7 +39,7 @@ public class MonthCalendar {
     }
 
     public String getMonthTitle(){
-        return dateToShow.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+        return dateToShow.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH);
     }
 
     public String getYear(){

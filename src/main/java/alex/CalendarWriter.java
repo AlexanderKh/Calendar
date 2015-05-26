@@ -6,59 +6,69 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.*;
 
 public class CalendarWriter {
+    private static final String EMPTY = "";
     private static final String HTML = ".html";
-    private static final String FOLDER = "/home/employee/Documents/out";
-    public static final String NEW_LINE = "\n";
-    public static final String PATH_SEPARATOR = "/";
+    private static final String NEW_LINE = "\n";
+    private static final String SLASH = "/";
+    private static final String BRACE = "'";
+    private static final String TAG_OPEN = "<";
+    private static final String TAG_CLOSE = ">";
+    private static final String TAG_END = "</";
+    private static final String BR = "<br>";
     private AbstractCalendarRenderer renderer;
+    private File path;
 
-    CalendarWriter(AbstractCalendarRenderer renderer){
+    CalendarWriter(AbstractCalendarRenderer renderer, File path){
         this.renderer = renderer;
+        this.path = path;
     }
 
-    public void generateFiles(List<Date> datesToWrite){
-        Collections.sort(datesToWrite);
-        List<MonthCalendar> monthCalendars = new ArrayList<MonthCalendar>();
-        Calendar calendar = null;
-        for (Date date : datesToWrite){
-            calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.YEAR, -1900);
-            monthCalendars.add(new MonthCalendar(calendar));
-        }
-        MonthCalendar prevMonth;
-        MonthCalendar nextMonth;
-        MonthCalendar currentMonth;
+    public void generateFilesForCalendarSet(CalendarSet<MonthCalendar> monthCalendars){
+        clearPath(path);
         for (int i = 0; i < monthCalendars.size(); i++) {
-            prevMonth = (i - 1 >= 0) ? monthCalendars.get(i - 1) : null;
-            currentMonth = monthCalendars.get(i);
-            nextMonth = (i < monthCalendars.size() - 1) ? monthCalendars.get(i + 1) : null;
-            printMonthToFile(prevMonth, currentMonth, nextMonth);
+            printMonthToFile(monthCalendars.getPreviousFor(i),
+                            monthCalendars.get(i),
+                            monthCalendars.getNextFor(i));
         }
+    }
+
+    private void clearPath(File path) {
+        if (path.isDirectory()){
+            for (File subPath : path.listFiles())
+                clearPath(subPath);
+        }
+        path.delete();
+        path.mkdir();
+    }
+
+    private String generatehref(MonthCalendar monthCalendar){
+        String result = EMPTY;
+        result += TAG_OPEN + "a href = ";
+        result += BRACE + ".." + SLASH + monthCalendar.getYear() + SLASH + monthCalendar.getMonthTitle() + HTML + BRACE + TAG_CLOSE;
+        result += monthCalendar.getYear() + " " + monthCalendar.getMonthTitle();
+        result += TAG_END + "a" + TAG_CLOSE;
+        result += NEW_LINE;
+
+        return result;
     }
 
     private void printMonthToFile(MonthCalendar previousMonth, MonthCalendar currentMonth, MonthCalendar nextMonth){
         String result = "";
         if (previousMonth != null)
-            result += "Prev month: <a href = '../" + previousMonth.getYear() + PATH_SEPARATOR + previousMonth.getMonthTitle() + HTML + "'>"
-                    + previousMonth.getYear() + " " + previousMonth.getMonthTitle()
-                    + "</a>" + NEW_LINE;
-        result += "<br>";
+            result += generatehref(previousMonth);
+        result += BR;
         if (nextMonth != null)
-            result += "Next month: <a href = '../" + nextMonth.getYear() + PATH_SEPARATOR + nextMonth.getMonthTitle() + HTML + "'>"
-                    + nextMonth.getYear() + " " + nextMonth.getMonthTitle()
-                    + "</a>" + NEW_LINE;
-        result += "<br>";
+            result += generatehref(nextMonth);
+        result += BR;
         result += renderer.render(currentMonth);
         try {
-            File file = new File(FOLDER + PATH_SEPARATOR + currentMonth.getYear());
-            file.mkdirs();
-            file = new File(FOLDER + PATH_SEPARATOR + currentMonth.getYear() + PATH_SEPARATOR + currentMonth.getMonthTitle() + HTML);
-            file.createNewFile();
-            Writer out = new FileWriter(file);
+            File yearDirectory = new File(path.getAbsolutePath() + SLASH + currentMonth.getYear());
+            yearDirectory.mkdirs();
+            File monthHTML = new File(path.getAbsolutePath() + SLASH + currentMonth.getYear() + SLASH + currentMonth.getMonthTitle() + HTML);
+            monthHTML.createNewFile();
+            Writer out = new FileWriter(monthHTML);
             out.write(result);
             out.flush();
             out.close();

@@ -3,10 +3,7 @@ package alex;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class InputReader {
 
@@ -15,8 +12,8 @@ public class InputReader {
     public static final int MONTH_MIN = 0;
     public static final int MONTH_MAX = 12;
 
-    public List<Date> getFirstDatesFromFile(File file) throws FileNotFoundException {
-        List<Date> result = new ArrayList<Date>();
+    public CalendarSet<Calendar> getFirstDatesFromFile(File file) throws FileNotFoundException {
+        CalendarSet<Calendar> result = new CalendarSet<Calendar>();
         Scanner scanner = new Scanner(file);
         String yearRow;
         while (scanner.hasNextLine()){
@@ -26,8 +23,8 @@ public class InputReader {
         return result;
     }
 
-    public  List<Date> parseAndGetDatesFromYearRow(String yearRow){
-        List<Date> result;
+    private CalendarSet<Calendar> parseAndGetDatesFromYearRow(String yearRow){
+        CalendarSet<Calendar> result;
         String[] yearData = yearRow.split(" ");
         int year = Integer.valueOf(yearData[YEAR_TAG_POS]);
         if (yearData.length == 1){
@@ -38,21 +35,24 @@ public class InputReader {
         return result;
     }
 
-    private List<Date> generateDatesForMonths(String[] yearData, int year) {
-        List<Date> result;
-        result = new ArrayList<Date>();
+    private CalendarSet<Calendar> generateDatesForMonths(String[] yearData, int year) {
+        CalendarSet<Calendar> result = new CalendarSet<Calendar>();
         int month;
         for (int i = 1; i < yearData.length; i++){
+            Calendar calendar = Calendar.getInstance();
             month = parseMonth(yearData[i]);
-            result.add(new Date(year, month, 1));
+            calendar.set(year, month, 1);
+            result.add(calendar);
         }
         return result;
     }
 
-    private List<Date> generateDatesForEntireYear(int year) {
-        List<Date> result = new ArrayList<Date>();
+    private CalendarSet<Calendar> generateDatesForEntireYear(int year) {
+        CalendarSet<Calendar> result = new CalendarSet<Calendar>();
         for (int month = MONTH_MIN; month < MONTH_MAX; month++){
-            result.add(new Date(year, month, 1));
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month, 1);
+            result.add(calendar);
         }
         return result;
     }
