@@ -8,7 +8,6 @@ public class CalendarFileWriterHelper {
     private static final String EMPTY = "";
     private static final String HTML = ".html";
     private static final String NEW_LINE = "\n";
-    private static final String SLASH = "/";
     private static final String BRACE = "'";
     private static final String TAG_OPEN = "<";
     private static final String TAG_CLOSE = ">";
@@ -25,12 +24,17 @@ public class CalendarFileWriterHelper {
         this.renderer = renderer;
     }
 
-    public String generateHRef(MonthCalendar monthCalendar){
+    private String appendTag(String contents, String tag, String tagParam) {
         String result = EMPTY;
-        result += TAG_OPEN + LINK_TAG + HREF;
-        result += BRACE + UPPER_FOLDER + File.separator + getRelativeFilenameForMonth(monthCalendar) + BRACE + TAG_CLOSE;
-        result += monthCalendar.getYear() + SPACE + monthCalendar.getMonthTitle();
-        result += TAG_END + LINK_TAG + TAG_CLOSE;
+        result += TAG_OPEN + tag + SPACE + tagParam + TAG_CLOSE;
+        result += contents;
+        result += TAG_END + tag + TAG_CLOSE + NEW_LINE;
+        return result;
+    }
+
+    private String generateHRef(MonthCalendar monthCalendar){
+        String result = appendTag(monthCalendar.getYear() + SPACE + monthCalendar.getMonthTitle(),
+                LINK_TAG, HREF + BRACE + UPPER_FOLDER + File.separator + getRelativeFilenameForMonth(monthCalendar) + BRACE);
         result += NEW_LINE;
         return result;
     }
