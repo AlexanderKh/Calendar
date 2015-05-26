@@ -11,6 +11,7 @@ public class InputReader {
     public static final int YEAR_TAG_POS = 0;
     public static final int MONTH_MIN = 0;
     public static final int MONTH_MAX = 12;
+    public static final String MONTH_CONVERSION_ERROR = "Month conversion error";
 
     public CalendarSet<Calendar> getFirstDatesFromFile(File file) throws FileNotFoundException {
         CalendarSet<Calendar> result = new CalendarSet<Calendar>();
@@ -18,24 +19,24 @@ public class InputReader {
         String yearRow;
         while (scanner.hasNextLine()){
             yearRow = scanner.nextLine();
-            result.addAll(parseAndGetDatesFromYearRow(yearRow));
+            result.addAll(parseAndGetCalendarsFromYearRow(yearRow));
         }
         return result;
     }
 
-    private CalendarSet<Calendar> parseAndGetDatesFromYearRow(String yearRow){
+    private CalendarSet<Calendar> parseAndGetCalendarsFromYearRow(String yearRow){
         CalendarSet<Calendar> result;
         String[] yearData = yearRow.split(" ");
         int year = Integer.valueOf(yearData[YEAR_TAG_POS]);
         if (yearData.length == 1){
-            result = generateDatesForEntireYear(year);
+            result = generateCalendarsForEntireYear(year);
         } else {
-            result = generateDatesForMonths(yearData, year);
+            result = generateCalendarsForMonths(yearData, year);
         }
         return result;
     }
 
-    private CalendarSet<Calendar> generateDatesForMonths(String[] yearData, int year) {
+    private CalendarSet<Calendar> generateCalendarsForMonths(String[] yearData, int year) {
         CalendarSet<Calendar> result = new CalendarSet<Calendar>();
         int month;
         for (int i = 1; i < yearData.length; i++){
@@ -47,7 +48,7 @@ public class InputReader {
         return result;
     }
 
-    private CalendarSet<Calendar> generateDatesForEntireYear(int year) {
+    private CalendarSet<Calendar> generateCalendarsForEntireYear(int year) {
         CalendarSet<Calendar> result = new CalendarSet<Calendar>();
         for (int month = MONTH_MIN; month < MONTH_MAX; month++){
             Calendar calendar = Calendar.getInstance();
@@ -64,7 +65,7 @@ public class InputReader {
         try{
             return new SimpleDateFormat("MMM").parse(month).getMonth();
         }catch (Exception e){
-            System.out.println("Month conversion error");
+            System.out.println(MONTH_CONVERSION_ERROR);
             return 0;
         }
     }
