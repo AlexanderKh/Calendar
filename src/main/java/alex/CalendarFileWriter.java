@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-public class CalendarWriter {
+public class CalendarFileWriter {
     private static final String EMPTY = "";
     private static final String HTML = ".html";
     private static final String NEW_LINE = "\n";
@@ -25,7 +25,7 @@ public class CalendarWriter {
     private AbstractCalendarRenderer renderer;
     private File path;
 
-    CalendarWriter(AbstractCalendarRenderer renderer, File path){
+    CalendarFileWriter(AbstractCalendarRenderer renderer, File path){
         this.renderer = renderer;
         this.path = path;
     }
@@ -44,7 +44,7 @@ public class CalendarWriter {
 
     private void writeMonthToFile(String filepath, String representation){
         try {
-            File file = new File(path.getAbsolutePath() + SLASH + filepath);
+            File file = new File(path.getAbsolutePath() + File.separator + filepath);
             file.getParentFile().mkdirs();
             file.createNewFile();
             Writer out = new FileWriter(file);
@@ -67,7 +67,7 @@ public class CalendarWriter {
     private String generateHRef(MonthCalendar monthCalendar){
         String result = EMPTY;
         result += TAG_OPEN + LINK_TAG + HREF;
-        result += BRACE + UPPER_FOLDER + SLASH + getRelativeFilenameForMonth(monthCalendar) + BRACE + TAG_CLOSE;
+        result += BRACE + UPPER_FOLDER + File.separator + getRelativeFilenameForMonth(monthCalendar) + BRACE + TAG_CLOSE;
         result += monthCalendar.getYear() + SPACE + monthCalendar.getMonthTitle();
         result += TAG_END + LINK_TAG + TAG_CLOSE;
         result += NEW_LINE;
@@ -88,7 +88,7 @@ public class CalendarWriter {
     }
 
     private String getRelativeFilenameForMonth(MonthCalendar monthCalendar){
-        return monthCalendar.getYear() + SLASH + monthCalendar.getMonthNumber()
+        return monthCalendar.getYear() + File.separator + monthCalendar.getMonthNumber()
                 + SPACE + monthCalendar.getMonthTitle() + HTML;
     }
 }
