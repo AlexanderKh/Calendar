@@ -1,9 +1,11 @@
 package alex;
 
 import alex.renderer.AbstractCalendarRenderer;
+import alex.renderer.HTMLCalendarRenderer;
+
 import java.io.File;
 
-public class CalendarFileWriterHelper {
+public class CalendarFormatHelper {
     private static final String EMPTY = "";
     private static final String HTML = ".html";
     private static final String NEW_LINE = "\n";
@@ -17,11 +19,7 @@ public class CalendarFileWriterHelper {
     private static final String SPACE = " ";
     private static final String UPPER_FOLDER = "..";
 
-    private AbstractCalendarRenderer renderer;
-
-    CalendarFileWriterHelper(AbstractCalendarRenderer renderer){
-        this.renderer = renderer;
-    }
+    private AbstractCalendarRenderer renderer = new HTMLCalendarRenderer();
 
     private String appendTag(String contents, String tag, String tagParam) {
         String result = EMPTY;
@@ -32,21 +30,20 @@ public class CalendarFileWriterHelper {
     }
 
     private String generateHRef(MonthCalendar monthCalendar){
+        if (monthCalendar == null) return EMPTY;
         String result = appendTag(monthCalendar.getYear() + SPACE + monthCalendar.getMonthTitle(),
                 LINK_TAG, HREF + BRACE + UPPER_FOLDER + File.separator + getRelativeFilenameForMonth(monthCalendar) + BRACE);
         result += NEW_LINE;
         return result;
     }
 
-    public String formatMonthCalendarToHTML(MonthCalendar previousMonth, MonthCalendar currentMonth, MonthCalendar nextMonth){
-        String result = "";
-        if (previousMonth != null)
-            result += generateHRef(previousMonth);
+    public String formatMonthCalendarToHTML(NavigableList<MonthCalendar> monthCalendars, int currentMonth){
+        String result = EMPTY;
+        result += generateHRef(monthCalendars.getPreviousFor(currentMonth));
         result += BR;
-        if (nextMonth != null)
-            result += generateHRef(nextMonth);
+        result += generateHRef(monthCalendars.getNextFor(currentMonth));
         result += BR;
-        result += renderer.render(currentMonth);
+        result += renderer.render(monthCalendars.get(currentMonth));
 
         return result;
     }

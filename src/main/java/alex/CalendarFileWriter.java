@@ -1,7 +1,5 @@
 package alex;
 
-import alex.renderer.AbstractCalendarRenderer;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,11 +7,11 @@ import java.io.Writer;
 
 public class CalendarFileWriter {
 
-    private CalendarFileWriterHelper helper;
+    private CalendarFormatHelper helper;
     private File path;
 
-    CalendarFileWriter(AbstractCalendarRenderer renderer, File path){
-        this.helper = new CalendarFileWriterHelper(renderer);
+    CalendarFileWriter(File path){
+        this.helper = new CalendarFormatHelper();
         this.path = path;
     }
 
@@ -21,11 +19,9 @@ public class CalendarFileWriter {
         clearPath(path);
         path.mkdir();
         for (int i = 0; i < monthCalendars.size(); i++) {
-            String currentMonthString = helper.formatMonthCalendarToHTML(monthCalendars.getPreviousFor(i),
-                    monthCalendars.get(i),
-                    monthCalendars.getNextFor(i));
+            String currentMonthHTML = helper.formatMonthCalendarToHTML(monthCalendars, i);
             String currentMonthFilepath = helper.getRelativeFilenameForMonth(monthCalendars.get(i));
-            writeMonthToFile(currentMonthFilepath, currentMonthString);
+            writeMonthToFile(currentMonthFilepath, currentMonthHTML);
         }
     }
 
