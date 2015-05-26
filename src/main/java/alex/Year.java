@@ -3,7 +3,6 @@ package alex;
 import java.util.*;
 
 public class Year implements Comparable {
-    private static final int MONTH_MIN = 0;
     private static final int MONTH_MAX = 12;
     private static final int[] FULL_YEAR = new int[12];
     private int year;

@@ -3,7 +3,6 @@ package alex.renderer;
 import alex.DayOfWeek;
 
 public class HTMLCalendarRenderer extends AbstractCalendarRenderer {
-
     private static final String TR = "tr";
     private static final String OPEN_TAG = "<";
     private static final String CLOSE_TAG = ">";

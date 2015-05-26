@@ -1,7 +1,6 @@
 package alex;
 
 import alex.renderer.AbstractCalendarRenderer;
-
 import java.io.File;
 
 public class CalendarFileWriterHelper {
