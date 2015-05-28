@@ -10,7 +10,7 @@
        <bean id="htmlOut" class="alex.renderer.HTMLCalendarRenderer"/>
 
        <bean id="calendarApp" class="alex.CalendarApp">
-              <property name="reader" ref="today" />
-              <property name="renderer" ref="consoleOut"/>
+              <property name="reader" ref="console" />
+              <property name="renderer" ref="htmlOut"/>
        </bean>
 </beans>

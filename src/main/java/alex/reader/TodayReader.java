@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 
 public class TodayReader implements InputReader{
+
     public List<Year> getYears() {
         Calendar calendar = Calendar.getInstance();
         int[] month = new int[1];
@@ -16,6 +17,7 @@ public class TodayReader implements InputReader{
         Year year = new Year(calendar.get(Calendar.YEAR), month);
         List<Year> result = new ArrayList<Year>();
         result.add(year);
+
         return result;
     }
 }

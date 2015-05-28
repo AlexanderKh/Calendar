@@ -16,13 +16,12 @@ public class CalendarApp {
     public void setReader(InputReader reader){
         this.reader = reader;
     }
-
     public void setRenderer(CalendarRenderer renderer) {
         this.renderer = renderer;
     }
 
     public void execute(){
-        NavigableList<MonthCalendar> monthCalendars = null;
+        List<MonthCalendar> monthCalendars;
         System.out.println(reader);
         List<Year> years = reader.getYears();
         Collections.sort(years);

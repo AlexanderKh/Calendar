@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import alex.calendar.Year;
 
 public class ConfigReader implements InputReader {
     public static final int YEAR_TAG_POS = 0;

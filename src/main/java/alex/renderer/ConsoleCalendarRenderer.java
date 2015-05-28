@@ -8,8 +8,6 @@ public class ConsoleCalendarRenderer extends AbstractCalendarRenderer {
     private static final String BLACK = "\u001B[0m";
     private static final String TAB = "\t";
 
-
-
     @Override
     String openMonthToken() {
         return NEW_LINE;
