@@ -9,6 +9,5 @@ public class Run {
         BeanFactory beanFactory = new FileSystemXmlApplicationContext("/src/main/java/spring-config.xml");
         CalendarApp calendarApp = (CalendarApp) beanFactory.getBean("calendarApp");
         calendarApp.execute();
-
     }
 }
