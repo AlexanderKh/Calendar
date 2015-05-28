@@ -1,9 +1,9 @@
 package alex.renderer;
 
-import alex.Day;
-import alex.DayOfWeek;
-import alex.MonthCalendar;
-import alex.Week;
+import alex.calendar.Day;
+import alex.calendar.DayOfWeek;
+import alex.calendar.MonthCalendar;
+import alex.calendar.Week;
 
 public abstract class AbstractCalendarRenderer {
 

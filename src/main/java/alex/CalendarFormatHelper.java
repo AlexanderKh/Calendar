@@ -1,5 +1,7 @@
 package alex;
 
+import alex.calendar.MonthCalendar;
+import alex.calendar.NavigableList;
 import alex.renderer.AbstractCalendarRenderer;
 import alex.renderer.HTMLCalendarRenderer;
 

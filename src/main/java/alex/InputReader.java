@@ -1,7 +1,6 @@
-package alex.reader;
+package alex;
 
-
-import alex.Year;
+import alex.calendar.Year;
 
 import java.util.List;
 

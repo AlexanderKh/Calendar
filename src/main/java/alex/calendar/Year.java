@@ -1,4 +1,4 @@
-package alex;
+package alex.calendar;
 
 import java.util.*;
 

@@ -1,19 +1,15 @@
 package alex;
 
-import alex.reader.ConfigReader;
-import alex.reader.InputReader;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Collections;
-import java.util.List;
-
-
+import alex.calendar.CalendarApp;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class Run {
 
     public static void main(String[] args){
-        new CalendarApp();
+        BeanFactory beanFactory = new FileSystemXmlApplicationContext("/src/main/java/spring-config.xml");
+        CalendarApp calendarApp = (CalendarApp) beanFactory.getBean("calendarApp");
+        calendarApp.execute();
 
     }
 }

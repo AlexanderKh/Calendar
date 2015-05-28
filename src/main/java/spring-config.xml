@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
        <bean id="config" class="alex.reader.ConfigReader" />
        <bean id="console" class="alex.reader.ConsoleReader" />
-       <bean id="calendarApp" class="alex.CalendarApp">
+       <bean id="calendarApp" class="alex.calendar.CalendarApp">
               <property name="reader" ref="console" />
        </bean>
 </beans>

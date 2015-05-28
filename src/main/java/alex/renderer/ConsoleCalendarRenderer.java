@@ -1,6 +1,6 @@
 package alex.renderer;
 
-import alex.DayOfWeek;
+import alex.calendar.DayOfWeek;
 
 public class ConsoleCalendarRenderer extends AbstractCalendarRenderer {
 
