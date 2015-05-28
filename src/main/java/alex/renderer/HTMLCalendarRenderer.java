@@ -3,7 +3,6 @@ package alex.renderer;
 import alex.DayOfWeek;
 
 public class HTMLCalendarRenderer extends AbstractCalendarRenderer {
-
     private static final String TR = "tr";
     private static final String OPEN_TAG = "<";
     private static final String CLOSE_TAG = ">";
@@ -15,7 +14,7 @@ public class HTMLCalendarRenderer extends AbstractCalendarRenderer {
     private static final String TH = "th";
     private static final String SPACE = " ";
     private static final String QUOTE = "'";
-    public static final String TABLE_BORDER = "border = 1";
+    private static final String TABLE_BORDER = "border = 1";
 
     @Override
     String openMonthToken() {

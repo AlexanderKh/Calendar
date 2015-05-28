@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.LinkedList;
 
 public class Week {
-
-
     private LinkedList<Day> days;
 
     Week(Calendar startingDate){
