@@ -4,7 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
        <bean id="config" class="alex.reader.ConfigReader" />
        <bean id="console" class="alex.reader.ConsoleReader" />
-       <bean id="calendarApp" class="alex.calendar.CalendarApp">
-              <property name="reader" ref="console" />
+       <bean id="today" class="alex.reader.TodayReader" />
+
+       <bean id="consoleOut" class="alex.renderer.ConsoleCalendarRenderer" />
+       <bean id="htmlOut" class="alex.renderer.HTMLCalendarRenderer"/>
+
+       <bean id="calendarApp" class="alex.CalendarApp">
+              <property name="reader" ref="today" />
+              <property name="renderer" ref="consoleOut"/>
        </bean>
 </beans>

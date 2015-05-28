@@ -1,6 +1,9 @@
-package alex.calendar;
+package alex;
 
-import alex.CalendarFileWriter;
+import alex.calendar.MonthCalendar;
+import alex.calendar.NavigableList;
+import alex.calendar.Year;
+import alex.filewriter.CalendarFileWriter;
 import alex.InputReader;
 
 import java.io.File;
@@ -9,14 +12,16 @@ import java.util.List;
 
 public class CalendarApp {
     private InputReader reader;
+    private CalendarRenderer renderer;
     public void setReader(InputReader reader){
         this.reader = reader;
     }
 
-
+    public void setRenderer(CalendarRenderer renderer) {
+        this.renderer = renderer;
+    }
 
     public void execute(){
-        File output = new File("/home/employee/Documents/output/");
         NavigableList<MonthCalendar> monthCalendars = null;
         System.out.println(reader);
         List<Year> years = reader.getYears();
@@ -25,7 +30,8 @@ public class CalendarApp {
         for (Year year : years){
             monthCalendars.addAll(year.getMonthCalendars());
         }
-        CalendarFileWriter calendarFileWriter = new CalendarFileWriter(output);
-        calendarFileWriter.generateFilesForCalendarSet(monthCalendars);
+        for(MonthCalendar monthCalendar : monthCalendars){
+            System.out.println(renderer.render(monthCalendar));
+        }
     }
 }

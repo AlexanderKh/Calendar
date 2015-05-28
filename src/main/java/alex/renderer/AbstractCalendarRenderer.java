@@ -1,11 +1,12 @@
 package alex.renderer;
 
+import alex.CalendarRenderer;
 import alex.calendar.Day;
 import alex.calendar.DayOfWeek;
 import alex.calendar.MonthCalendar;
 import alex.calendar.Week;
 
-public abstract class AbstractCalendarRenderer {
+public abstract class AbstractCalendarRenderer implements CalendarRenderer{
 
     protected static final String EMPTY = "";
     protected static final String NEW_LINE = "\n";

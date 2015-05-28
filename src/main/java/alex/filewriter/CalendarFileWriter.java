@@ -1,4 +1,4 @@
-package alex;
+package alex.filewriter;
 
 import alex.calendar.MonthCalendar;
 import alex.calendar.NavigableList;

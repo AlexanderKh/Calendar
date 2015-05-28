@@ -1,6 +1,5 @@
 package alex;
 
-import alex.calendar.CalendarApp;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
