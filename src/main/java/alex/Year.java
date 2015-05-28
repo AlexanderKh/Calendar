@@ -14,11 +14,11 @@ public class Year implements Comparable {
         }
     }
 
-    Year(int year){
+    public Year(int year){
         this(year, FULL_YEAR);
     }
 
-    Year(int year, int[] monthNumbers) {
+    public Year(int year, int[] monthNumbers) {
         this.year = year;
         this.monthNumbers = monthNumbers;
         Arrays.sort(this.monthNumbers);

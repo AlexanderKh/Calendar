@@ -1,17 +1,26 @@
-package alex;
+package alex.reader;
+
+import alex.Year;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class InputReader {
+public class ConfigReader implements InputReader {
     public static final int YEAR_TAG_POS = 0;
     public static final String MONTH_CONVERSION_ERROR = "Month conversion error";
 
-    public List<Year> readYears(File file) throws FileNotFoundException {
+    private static final File input = new File("/home/employee/Documents/input.txt");
+
+    public List<Year> getYears() {
         List<Year> result = new ArrayList<Year>();
-        Scanner scanner = new Scanner(file);
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(input);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         String yearRow;
         while (scanner.hasNextLine()){
             yearRow = scanner.nextLine();
@@ -45,6 +54,7 @@ public class InputReader {
             return 0;
         }
     }
+
 
 
 }
