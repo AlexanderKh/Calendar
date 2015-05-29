@@ -6,12 +6,10 @@ import alex.calendar.MonthCalendar;
 import alex.calendar.NavigableList;
 
 public class TextFormatter extends AbstractFormatter{
-    private static final String TAB = "\t";
     private static final String TEXT = ".txt";
 
-
     @Override
-    String getExtention() {
+    String getExtension() {
         return TEXT;
     }
 

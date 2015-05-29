@@ -7,20 +7,14 @@ import alex.calendar.NavigableList;
 import java.io.File;
 
 public class HTMLFormatter extends AbstractFormatter {
-    private static final String TR = "tr";
-    private static final String OPEN_TAG = "<";
-    private static final String CLOSE_TAG = ">";
     private static final String BLACK = "BLACK";
     private static final String RED = "RED";
     private static final String TABLE = "table";
-    private static final String END_TAG = "</";
+    private static final String TR = "tr";
     private static final String TD = "td";
     private static final String TH = "th";
     private static final String QUOTE = "'";
     private static final String TABLE_BORDER = "border = 1";
-    private static final String EMPTY = "";
-    private static final String NEW_LINE = "\n";
-    private static final String BRACE = "'";
     private static final String TAG_OPEN = "<";
     private static final String TAG_CLOSE = ">";
     private static final String TAG_END = "</";
@@ -45,14 +39,14 @@ public class HTMLFormatter extends AbstractFormatter {
         if (monthCalendar == null) return EMPTY;
         String result = appendTag(monthCalendar.getYear() + SPACE + monthCalendar.getMonthTitle(),
                 LINK_TAG,
-                HREF + BRACE + UPPER_FOLDER + File.separator + getRelativeFilename(monthCalendar) + BRACE);
+                HREF + QUOTE + UPPER_FOLDER + File.separator + getRelativeFilename(monthCalendar) + QUOTE);
         result += NEW_LINE;
 
         return result;
     }
 
     @Override
-    String getExtention() {
+    String getExtension() {
         return HTML;
     }
 
@@ -66,48 +60,49 @@ public class HTMLFormatter extends AbstractFormatter {
         result += appendTag(monthCalendars.get(index).getYear() + SPACE + monthCalendars.get(index).getMonthTitle(),
                 BOLD, EMPTY);
         result += BR;
-        result += OPEN_TAG + TABLE + SPACE + TABLE_BORDER + CLOSE_TAG + NEW_LINE;
+        result += TAG_OPEN + TABLE + SPACE + TABLE_BORDER + TAG_CLOSE + NEW_LINE;
+
         return result;
     }
 
     @Override
     String closeMonthToken() {
-        return END_TAG + TABLE + CLOSE_TAG + NEW_LINE;
+        return TAG_END + TABLE + TAG_CLOSE + NEW_LINE;
     }
 
     @Override
     String openDayOfWeekToken() {
-        return OPEN_TAG + TH + CLOSE_TAG;
+        return TAG_OPEN + TH + TAG_CLOSE;
     }
 
     @Override
     String closeDayOfWeekToken() {
-        return END_TAG + TH + CLOSE_TAG + NEW_LINE;
+        return TAG_END + TH + TAG_CLOSE + NEW_LINE;
     }
 
     @Override
     String openWeekToken() {
-        return OPEN_TAG + TR + CLOSE_TAG + NEW_LINE;
+        return TAG_OPEN + TR + TAG_CLOSE + NEW_LINE;
     }
 
     @Override
     String closeWeekToken() {
-        return END_TAG + TR + CLOSE_TAG + NEW_LINE;
+        return TAG_END + TR + TAG_CLOSE + NEW_LINE;
     }
 
     @Override
     String openDayToken(DayOfWeek dayOfWeek) {
-        String result = OPEN_TAG + TD + SPACE + "style = " + QUOTE + "color : ";
+        String result = EMPTY;
+        result += TAG_OPEN + TD + SPACE + "style = " + QUOTE + "color : ";
         result += dayOfWeek.weekendDay() ? RED : BLACK;
-        result += QUOTE;
-        result += CLOSE_TAG;
+        result += QUOTE + TAG_CLOSE;
 
         return result;
     }
 
     @Override
     String closeDayToken() {
-        return END_TAG + TD + CLOSE_TAG + NEW_LINE;
+        return TAG_END + TD + TAG_CLOSE + NEW_LINE;
     }
 
 }

@@ -4,13 +4,12 @@ import alex.CalendarFormatter;
 import alex.calendar.*;
 
 import java.io.File;
-import java.util.List;
 
 public abstract class AbstractFormatter implements CalendarFormatter {
-
     protected static final String EMPTY = "";
     protected static final String NEW_LINE = "\n";
     protected static final String SPACE = " ";
+    protected static final String TAB = "\t";
 
 
     public String render(NavigableList<MonthCalendar> monthCalendars, int index){
@@ -61,10 +60,10 @@ public abstract class AbstractFormatter implements CalendarFormatter {
 
     public String getRelativeFilename(MonthCalendar monthCalendar){
         return monthCalendar.getYear() + File.separator + monthCalendar.getMonthNumber()
-                + SPACE + monthCalendar.getMonthTitle() + getExtention();
+                + SPACE + monthCalendar.getMonthTitle() + getExtension();
     }
 
-    abstract String getExtention();
+    abstract String getExtension();
     abstract String openMonthToken(NavigableList<MonthCalendar> monthCalendars, int index);
     abstract String closeMonthToken();
     abstract String openDayOfWeekToken();

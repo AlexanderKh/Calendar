@@ -5,15 +5,13 @@ import alex.calendar.MonthCalendar;
 import alex.calendar.NavigableList;
 
 public class ConsoleFormatter extends AbstractFormatter {
-
     private static final String RED = "\u001B[31m";
     private static final String BLACK = "\u001B[0m";
-    private static final String TAB = "\t";
     private static final String TEXT = ".txt";
 
 
     @Override
-    String getExtention() {
+    String getExtension() {
         return TEXT;
     }
 
