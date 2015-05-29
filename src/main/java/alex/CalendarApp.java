@@ -22,7 +22,6 @@ public class CalendarApp {
     }
 
     public void execute(){
-
         List<Year> years = reader.getYears();
         writer.writeYears(years, formatter);
     }

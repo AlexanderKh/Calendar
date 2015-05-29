@@ -1,13 +1,13 @@
 package alex.reader;
 
-import alex.InputReader;
 import alex.calendar.Year;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import alex.calendar.Year;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class FileReader extends AbstractCalendarReader {
     public static final int YEAR_TAG_POS = 0;

@@ -1,21 +1,28 @@
 package alex.formatter;
 
+
 import alex.calendar.DayOfWeek;
+import alex.calendar.MonthCalendar;
+import alex.calendar.NavigableList;
 
-public class ConsoleCalendarFormatter extends AbstractCalendarFormatter {
-
-    private static final String RED = "\u001B[31m";
-    private static final String BLACK = "\u001B[0m";
+public class TextFormatter extends AbstractFormatter{
     private static final String TAB = "\t";
+    private static final String TEXT = ".txt";
+
 
     @Override
-    String openMonthToken() {
-        return NEW_LINE;
+    String getExtention() {
+        return TEXT;
+    }
+
+    @Override
+    String openMonthToken(NavigableList<MonthCalendar> monthCalendars, int index) {
+        return EMPTY;
     }
 
     @Override
     String closeMonthToken() {
-        return BLACK;
+        return EMPTY;
     }
 
     @Override
@@ -40,7 +47,7 @@ public class ConsoleCalendarFormatter extends AbstractCalendarFormatter {
 
     @Override
     String openDayToken(DayOfWeek dayOfWeek) {
-        return dayOfWeek.weekendDay() ? RED : BLACK;
+        return EMPTY;
     }
 
     @Override

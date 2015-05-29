@@ -7,18 +7,18 @@ import alex.calendar.NavigableList;
 import alex.calendar.Year;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.List;
 
-public class CalendarFileWriter implements CalendarWriter {
+public class FileWriter implements CalendarWriter {
 
-    private CalendarFormatHelper helper;
     private File path;
     private static final File output = new File("/home/employee/Documents/output");
 
-    CalendarFileWriter(){
+    private CalendarFormatter formatter;
+
+    FileWriter(){
         this.path = output;
     }
 
@@ -26,9 +26,9 @@ public class CalendarFileWriter implements CalendarWriter {
         clearPath(path);
         path.mkdir();
         for (int i = 0; i < monthCalendars.size(); i++) {
-            String currentMonthHTML = helper.formatMonthCalendarToHTML(monthCalendars, i);
-            String currentMonthFilepath = helper.getRelativeFilenameForMonth(monthCalendars.get(i));
-            writeMonthToFile(currentMonthFilepath, currentMonthHTML);
+            String currentMonthRepresentation = formatter.render(monthCalendars, i);
+            String currentMonthFilepath = formatter.getRelativeFilename(monthCalendars.get(i));
+            writeMonthToFile(currentMonthFilepath, currentMonthRepresentation);
         }
     }
 
@@ -37,7 +37,7 @@ public class CalendarFileWriter implements CalendarWriter {
             File file = new File(path.getAbsolutePath() + File.separator + filepath);
             file.getParentFile().mkdirs();
             file.createNewFile();
-            Writer out = new FileWriter(file);
+            Writer out = new java.io.FileWriter(file);
             out.write(representation);
             out.flush();
             out.close();
@@ -56,7 +56,7 @@ public class CalendarFileWriter implements CalendarWriter {
 
 
     public void writeYears(List<Year> years, CalendarFormatter formatter) {
-        this.helper = new CalendarFormatHelper(formatter);
+        this.formatter = formatter;
         NavigableList<MonthCalendar> monthCalendars = new NavigableList<MonthCalendar>();
         for (Year year : years){
             monthCalendars.addAll(year.getMonthCalendars());

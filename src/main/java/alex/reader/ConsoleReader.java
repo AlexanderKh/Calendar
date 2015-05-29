@@ -1,10 +1,10 @@
 package alex.reader;
 
-import alex.InputReader;
 import alex.calendar.Year;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class ConsoleReader extends AbstractCalendarReader {
 
