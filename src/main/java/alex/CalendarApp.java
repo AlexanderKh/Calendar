@@ -1,17 +1,14 @@
 package alex;
 
-import alex.calendar.MonthCalendar;
-import alex.calendar.NavigableList;
 import alex.calendar.Year;
 
-import java.util.Collections;
 import java.util.List;
 
 public class CalendarApp {
-    private InputReader reader;
+    private CalendarReader reader;
     private CalendarFormatter formatter;
     private CalendarWriter writer;
-    public void setReader(InputReader reader){
+    public void setReader(CalendarReader reader){
         this.reader = reader;
     }
     public void setFormatter(CalendarFormatter formatter) {

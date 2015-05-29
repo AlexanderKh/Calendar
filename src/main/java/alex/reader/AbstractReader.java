@@ -1,10 +1,10 @@
 package alex.reader;
 
-import alex.InputReader;
+import alex.CalendarReader;
 
 import java.text.SimpleDateFormat;
 
-public abstract class AbstractCalendarReader implements InputReader{
+public abstract class AbstractReader implements CalendarReader {
 
     private static final String MONTH_CONVERSION_ERROR = "Month conversion error";
     protected int parseMonth(String month){

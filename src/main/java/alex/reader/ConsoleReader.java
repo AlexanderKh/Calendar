@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ConsoleReader extends AbstractCalendarReader {
+public class ConsoleReader extends AbstractReader {
 
     public List<Year> getYears() {
         List<Year> result = new ArrayList<Year>();

@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileReader extends AbstractCalendarReader {
+public class FileReader extends AbstractReader {
     public static final int YEAR_TAG_POS = 0;
 
     private static final File input = new File("/home/employee/Documents/input.txt");
