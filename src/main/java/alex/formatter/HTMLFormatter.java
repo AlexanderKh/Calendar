@@ -29,6 +29,7 @@ public class HTMLFormatter extends AbstractFormatter {
     private static final String HREF = " href = ";
     private static final String UPPER_FOLDER = "..";
     private static final String HTML = ".html";
+    private static final String BOLD = "b";
 
 
     private String appendTag(String contents, String tag, String tagParam) {
@@ -61,6 +62,9 @@ public class HTMLFormatter extends AbstractFormatter {
         result += generateHRef(monthCalendars.getPreviousFor(index));
         result += BR;
         result += generateHRef(monthCalendars.getNextFor(index));
+        result += BR;
+        result += appendTag(monthCalendars.get(index).getYear() + SPACE + monthCalendars.get(index).getMonthTitle(),
+                BOLD, EMPTY);
         result += BR;
         result += OPEN_TAG + TABLE + SPACE + TABLE_BORDER + CLOSE_TAG + NEW_LINE;
         return result;

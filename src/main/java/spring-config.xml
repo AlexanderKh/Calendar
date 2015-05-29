@@ -16,7 +16,7 @@
 
        <bean id="calendarApp" class="alex.CalendarApp">
               <property name="reader" ref="fileReader" />
-              <property name="formatter" ref="textFormatter"/>
+              <property name="formatter" ref="htmlFormatter"/>
               <property name="writer" ref="fileWriter"/>
        </bean>
 </beans>
