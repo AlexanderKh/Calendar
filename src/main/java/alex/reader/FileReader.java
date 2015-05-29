@@ -9,9 +9,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import alex.calendar.Year;
 
-public class ConfigReader implements InputReader {
+public class FileReader extends AbstractCalendarReader {
     public static final int YEAR_TAG_POS = 0;
-    public static final String MONTH_CONVERSION_ERROR = "Month conversion error";
 
     private static final File input = new File("/home/employee/Documents/input.txt");
 
@@ -47,15 +46,5 @@ public class ConfigReader implements InputReader {
         }
     }
 
-    private int parseMonth(String month){
-        if (month.matches("\\d+")){
-            return Integer.valueOf(month) - 1;
-        }
-        try{
-            return new SimpleDateFormat("MMM").parse(month).getMonth();
-        }catch (Exception e){
-            System.out.println(MONTH_CONVERSION_ERROR);
-            return 0;
-        }
-    }
+
 }

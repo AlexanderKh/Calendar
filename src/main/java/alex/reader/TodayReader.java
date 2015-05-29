@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class TodayReader implements InputReader{
+public class TodayReader extends AbstractCalendarReader{
 
     public List<Year> getYears() {
         Calendar calendar = Calendar.getInstance();
