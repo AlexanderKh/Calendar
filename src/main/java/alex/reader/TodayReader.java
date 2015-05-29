@@ -11,12 +11,6 @@ public class TodayReader extends AbstractReader {
 
     public List<Year> getYears() {
         Calendar calendar = Calendar.getInstance();
-        int[] month = new int[1];
-        month[0] = calendar.get(Calendar.MONTH);
-        Year year = new Year(calendar.get(Calendar.YEAR), month);
-        List<Year> result = new ArrayList<Year>();
-        result.add(year);
-
-        return result;
+        return getListWithOneMonth(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH));
     }
 }
