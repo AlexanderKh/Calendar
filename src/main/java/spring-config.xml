@@ -2,15 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-       <bean id="config" class="alex.reader.ConfigReader" />
-       <bean id="console" class="alex.reader.ConsoleReader" />
-       <bean id="today" class="alex.reader.TodayReader" />
+       <bean id="configReader" class="alex.reader.ConfigReader" />
+       <bean id="consoleReader" class="alex.reader.ConsoleReader" />
+       <bean id="todayReader" class="alex.reader.TodayReader" />
 
-       <bean id="consoleOut" class="alex.renderer.ConsoleCalendarRenderer" />
-       <bean id="htmlOut" class="alex.renderer.HTMLCalendarRenderer"/>
+       <bean id="consoleFormatter" class="alex.formatter.ConsoleCalendarFormatter" />
+       <bean id="htmlFormatter" class="alex.formatter.HTMLCalendarFormatter"/>
+
+       <bean id="consoleWriter" class="alex.writer.CalendarConsoleWriter"/>
+       <bean id="fileWriter" class="alex.writer.CalendarFileWriter"/>
 
        <bean id="calendarApp" class="alex.CalendarApp">
-              <property name="reader" ref="console" />
-              <property name="renderer" ref="htmlOut"/>
+              <property name="reader" ref="configReader" />
+              <property name="formatter" ref="consoleFormatter"/>
+              <property name="writer" ref="fileWriter"/>
        </bean>
 </beans>

@@ -28,6 +28,8 @@ public class ConfigReader implements InputReader {
             yearRow = scanner.nextLine();
             result.add(getYearFromRow(yearRow));
         }
+        Collections.sort(result);
+
         return result;
     }
 
@@ -56,7 +58,4 @@ public class ConfigReader implements InputReader {
             return 0;
         }
     }
-
-
-
 }

@@ -1,9 +1,9 @@
-package alex.filewriter;
+package alex.writer;
 
+import alex.CalendarFormatter;
 import alex.calendar.MonthCalendar;
 import alex.calendar.NavigableList;
-import alex.renderer.AbstractCalendarRenderer;
-import alex.renderer.HTMLCalendarRenderer;
+import alex.formatter.HTMLCalendarFormatter;
 
 import java.io.File;
 
@@ -21,7 +21,11 @@ public class CalendarFormatHelper {
     private static final String SPACE = " ";
     private static final String UPPER_FOLDER = "..";
 
-    private AbstractCalendarRenderer renderer = new HTMLCalendarRenderer();
+    private CalendarFormatter formatter = new HTMLCalendarFormatter();
+
+    CalendarFormatHelper(CalendarFormatter formatter){
+        this.formatter = formatter;
+    }
 
     private String appendTag(String contents, String tag, String tagParam) {
         String result = EMPTY;
@@ -48,7 +52,7 @@ public class CalendarFormatHelper {
         result += BR;
         result += generateHRef(monthCalendars.getNextFor(currentMonth));
         result += BR;
-        result += renderer.render(monthCalendars.get(currentMonth));
+        result += formatter.render(monthCalendars.get(currentMonth));
 
         return result;
     }

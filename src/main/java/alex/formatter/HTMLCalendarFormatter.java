@@ -1,8 +1,8 @@
-package alex.renderer;
+package alex.formatter;
 
 import alex.calendar.DayOfWeek;
 
-public class HTMLCalendarRenderer extends AbstractCalendarRenderer {
+public class HTMLCalendarFormatter extends AbstractCalendarFormatter {
     private static final String TR = "tr";
     private static final String OPEN_TAG = "<";
     private static final String CLOSE_TAG = ">";

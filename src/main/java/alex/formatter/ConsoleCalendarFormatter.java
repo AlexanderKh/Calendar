@@ -1,8 +1,8 @@
-package alex.renderer;
+package alex.formatter;
 
 import alex.calendar.DayOfWeek;
 
-public class ConsoleCalendarRenderer extends AbstractCalendarRenderer {
+public class ConsoleCalendarFormatter extends AbstractCalendarFormatter {
 
     private static final String RED = "\u001B[31m";
     private static final String BLACK = "\u001B[0m";

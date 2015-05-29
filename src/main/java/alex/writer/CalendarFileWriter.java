@@ -1,21 +1,25 @@
-package alex.filewriter;
+package alex.writer;
 
+import alex.CalendarFormatter;
+import alex.CalendarWriter;
 import alex.calendar.MonthCalendar;
 import alex.calendar.NavigableList;
+import alex.calendar.Year;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
 
-public class CalendarFileWriter {
+public class CalendarFileWriter implements CalendarWriter {
 
     private CalendarFormatHelper helper;
     private File path;
+    private static final File output = new File("/home/employee/Documents/output");
 
-    CalendarFileWriter(File path){
-        this.helper = new CalendarFormatHelper();
-        this.path = path;
+    CalendarFileWriter(){
+        this.path = output;
     }
 
     public void generateFilesForCalendarSet(NavigableList<MonthCalendar> monthCalendars){
@@ -51,4 +55,13 @@ public class CalendarFileWriter {
     }
 
 
+    public void writeYears(List<Year> years, CalendarFormatter formatter) {
+        this.helper = new CalendarFormatHelper(formatter);
+        NavigableList<MonthCalendar> monthCalendars = new NavigableList<MonthCalendar>();
+        for (Year year : years){
+            monthCalendars.addAll(year.getMonthCalendars());
+        }
+        generateFilesForCalendarSet(monthCalendars);
+
+    }
 }
