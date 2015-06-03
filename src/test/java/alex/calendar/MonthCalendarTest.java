@@ -1,6 +1,5 @@
 package alex.calendar;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +7,7 @@ import java.util.Calendar;
 import java.util.LinkedList;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class MonthCalendarTest {
 
@@ -19,11 +18,6 @@ public class MonthCalendarTest {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2015, Calendar.JUNE, 01);
         monthCalendar = new MonthCalendar(calendar);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     @Test

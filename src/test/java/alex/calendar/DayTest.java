@@ -1,43 +1,45 @@
 package alex.calendar;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class DayTest {
 
-    @Test
-    public void testGetDayInMonth() throws Exception {
-        Calendar calendar = Calendar.getInstance();
+    Day day;
+    Calendar calendar;
+
+    @Before
+    public void setUp() throws Exception {
+        calendar = Calendar.getInstance();
         calendar.set(2015, Calendar.JUNE, 01);
         DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
+        day = new Day(calendar, dayOfWeek);
 
-        Day day = new Day(calendar, dayOfWeek);
-
-        assert day.getDayInMonth() == 1;
     }
 
     @Test
-    public void testGetCalendar() throws Exception {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2015, Calendar.JUNE, 01);
-        DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
+    public void testGetDayInMonth__return1() throws Exception {
+        int actualDayInMonth = day.getDayInMonth();
 
-        Day day = new Day(calendar, dayOfWeek);
-
-        assert day.getCalendar().equals(calendar);
+        assertThat(actualDayInMonth, is(1));
     }
 
     @Test
-    public void testGetType() throws Exception {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2015, Calendar.JUNE, 01);
-        DayOfWeek dayOfWeek = DayOfWeek.MONDAY;
+    public void testGetCalendar__returnInitialCalendar() throws Exception {
+        Calendar actualCalendar = day.getCalendar();
 
-        Day day = new Day(calendar, dayOfWeek);
+        assertThat(actualCalendar, is(calendar));
+    }
 
-        assert day.getType().equals(DayOfWeek.MONDAY);
+    @Test
+    public void testGetType__returnMONDAY() throws Exception {
+        DayOfWeek actualDayType = day.getType();
+
+        assertThat(actualDayType, is(DayOfWeek.MONDAY));
     }
 }

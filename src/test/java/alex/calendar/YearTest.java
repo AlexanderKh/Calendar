@@ -8,9 +8,11 @@ import static org.junit.Assert.*;
 
 public class YearTest {
 
+    Year year;
+
     @Before
     public void setUp() throws Exception {
-
+        year = new Year(2015);
     }
 
     @After
