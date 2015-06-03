@@ -8,7 +8,7 @@ public class MonthCalendar {
     private LinkedList<Week> weeks;
     private Calendar dateToShow;
 
-    MonthCalendar(Calendar startingDate){
+    public MonthCalendar(Calendar startingDate){
         dateToShow = (Calendar)startingDate.clone();
         dateToShow.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
         weeks = new LinkedList<Week>();
