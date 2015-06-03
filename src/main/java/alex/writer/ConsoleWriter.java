@@ -6,9 +6,18 @@ import alex.calendar.MonthCalendar;
 import alex.calendar.NavigableList;
 import alex.calendar.Year;
 
+import java.io.OutputStream;
 import java.util.List;
 
 public class ConsoleWriter implements CalendarWriter {
+
+    ConsoleWriter(){
+        this(System.out);
+    }
+
+    ConsoleWriter(OutputStream out){
+
+    }
 
     public void writeYears(List<Year> years, CalendarFormatter formatter) {
         NavigableList<MonthCalendar> monthCalendars = new NavigableList<MonthCalendar>();

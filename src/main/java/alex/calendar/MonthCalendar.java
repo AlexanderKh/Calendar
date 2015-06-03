@@ -46,8 +46,6 @@ public class MonthCalendar {
         return dateToShow.get(Calendar.MONTH) + 1;
     }
 
-
-
     public String getYear(){
         return String.valueOf(dateToShow.get(Calendar.YEAR));
     }
