@@ -1,18 +1,14 @@
 package alex.calendar;
 
-import org.hamcrest.Matcher;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 
 import static com.sun.javafx.fxml.expression.Expression.lessThan;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class YearTest {
 
