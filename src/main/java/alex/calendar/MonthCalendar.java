@@ -34,6 +34,21 @@ public class MonthCalendar {
         return result;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof MonthCalendar){
+            boolean result =  true;
+            MonthCalendar other = (MonthCalendar) o;
+            LinkedList<Week> otherWeeks = other.getWeeks();
+            for (int i = 0; i < weeks.size(); i++) {
+                result = result && weeks.get(i).equals(otherWeeks.get(i));
+            }
+            return result;
+        }else {
+            return false;
+        }
+    }
+
     private boolean lastDayOfCurrentMonth(Calendar calendar){
         return calendar.get(Calendar.DAY_OF_MONTH) == calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     }

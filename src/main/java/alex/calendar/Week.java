@@ -41,4 +41,13 @@ public class Week {
         return days;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof Week){
+            return days.get(0).equals(((Week) o).getDays().get(0));
+        } else {
+            return false;
+        }
+    }
+
 }
