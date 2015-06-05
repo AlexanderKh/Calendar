@@ -1,14 +1,13 @@
 package alex.calendar;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class WeekTest {
 
@@ -19,10 +18,6 @@ public class WeekTest {
         Calendar calendar = Calendar.getInstance();
         calendar.set(2015, Calendar.JUNE, 04);
         week = new Week(calendar);
-    }
-
-    @After
-    public void tearDown() throws Exception {
 
     }
 
@@ -55,7 +50,22 @@ public class WeekTest {
 
     @Test
     public void testGetDays() throws Exception {
-        List<Day> days = week.getDays();
-        Calendar calendar = days.get(0).getCalendar();
+        List<Day> actualDays = week.getDays();
+
+        int dayOFMonth = 31;
+        for(Day day : actualDays){
+            Calendar calendar = day.getCalendar();
+            int actualYear = calendar.get(Calendar.YEAR);
+            assertThat(actualYear, is(2015));
+            int actualMonth = calendar.get(Calendar.MONTH);
+            assertThat(actualMonth, is((dayOFMonth == 31) ? Calendar.MAY : Calendar.JUNE));
+            int actualDay = calendar.get(Calendar.DAY_OF_MONTH);
+            assertThat(actualDay, is(dayOFMonth));
+            if (dayOFMonth >= 31){
+                dayOFMonth = 1;
+            }else {
+                dayOFMonth++;
+            }
+        }
     }
 }
