@@ -40,9 +40,7 @@ public class MonthCalendar {
             boolean result =  true;
             MonthCalendar other = (MonthCalendar) o;
             LinkedList<Week> otherWeeks = other.getWeeks();
-            for (int i = 0; i < weeks.size(); i++) {
-                result = result && weeks.get(i).equals(otherWeeks.get(i));
-            }
+            result = weeks.get(0).equals(otherWeeks.get(0));
             return result;
         }else {
             return false;

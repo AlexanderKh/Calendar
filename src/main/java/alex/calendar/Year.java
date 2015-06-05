@@ -34,6 +34,17 @@ public class Year implements Comparable {
         return new MonthCalendar(calendar);
     }
 
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof Year){
+            boolean result = true;
+            result = result && year == ((Year) o).year;
+            result = result && Arrays.equals(monthNumbers, ((Year) o).monthNumbers);
+            return result;
+        } else {
+            return false;
+        }
+    }
 
     public Collection<? extends MonthCalendar> getMonthCalendars() {
         List<MonthCalendar> monthCalendars = new ArrayList<MonthCalendar>();

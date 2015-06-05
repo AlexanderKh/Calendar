@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.LinkedList;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -49,15 +50,15 @@ public class MonthCalendarTest {
     public void getWeeks() throws Exception {
         LinkedList<Week> weeks = new LinkedList<Week>();
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2015, Calendar.MAY, 31);
+        calendar.set(2015, Calendar.JUNE, 1);
         weeks.add(new Week(calendar));
-        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
         weeks.add(new Week(calendar));
-        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
         weeks.add(new Week(calendar));
-        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
         weeks.add(new Week(calendar));
-        calendar.add(Calendar.DAY_OF_YEAR, 7);
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
         weeks.add(new Week(calendar));
 
         LinkedList<Week> actualWeeks = monthCalendar.getWeeks();

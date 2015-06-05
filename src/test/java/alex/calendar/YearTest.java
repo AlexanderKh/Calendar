@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import static com.sun.javafx.fxml.expression.Expression.lessThan;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -16,7 +17,7 @@ public class YearTest {
 
     @Before
     public void setUp() throws Exception {
-        int[] months = {1, 2, 12};
+        int[] months = {Calendar.JANUARY, Calendar.FEBRUARY, Calendar.DECEMBER};
         year = new Year(2015, months);
     }
 
@@ -34,11 +35,11 @@ public class YearTest {
         ArrayList<MonthCalendar> monthCalendars = new ArrayList<MonthCalendar>();
         Calendar calendar = Calendar.getInstance();
         calendar.set(2015, Calendar.JANUARY, 01);
-        monthCalendars.add(new MonthCalendar(calendar));
+        monthCalendars.add(new MonthCalendar((Calendar)calendar.clone()));
         calendar.set(Calendar.MONTH, Calendar.FEBRUARY);
-        monthCalendars.add(new MonthCalendar(calendar));
+        monthCalendars.add(new MonthCalendar((Calendar)calendar.clone()));
         calendar.set(Calendar.MONTH, Calendar.DECEMBER);
-        monthCalendars.add(new MonthCalendar(calendar));
+        monthCalendars.add(new MonthCalendar((Calendar)calendar.clone()));
 
         ArrayList<MonthCalendar> actualMonthCalendars = (ArrayList<MonthCalendar>) year.getMonthCalendars();
 
