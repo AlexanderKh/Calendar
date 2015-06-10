@@ -18,7 +18,7 @@ public class FileWriter implements CalendarWriter {
 
     private CalendarFormatter formatter;
 
-    FileWriter(){
+    public FileWriter(){
         this.path = output;
     }
 

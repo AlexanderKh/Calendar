@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class FileReader extends AbstractReader {
     public static final int YEAR_TAG_POS = 0;
 
-    static File input = new File("/home/employee/Documents/input.txt");
+    static File input = new File("C:/input.txt");
 
     public List<Year> getYears() {
         List<Year> result = new ArrayList<Year>();
