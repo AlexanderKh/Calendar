@@ -6,6 +6,7 @@
        <bean id="fileReader" class="alex.reader.FileReader" />
        <bean id="consoleReader" class="alex.reader.ConsoleReader" />
        <bean id="todayReader" class="alex.reader.TodayReader" />
+       <bean id="stringParamReader" class="alex.reader.StringParamReader"/>
 
        <bean id="consoleFormatter" class="alex.formatter.ConsoleFormatter" />
        <bean id="textFormatter" class="alex.formatter.TextFormatter"/>

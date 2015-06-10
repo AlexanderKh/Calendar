@@ -57,7 +57,6 @@ public abstract class AbstractFormatter implements CalendarFormatter {
         return result;
     }
 
-
     public String getRelativeFilename(MonthCalendar monthCalendar){
         return monthCalendar.getYear() + File.separator + monthCalendar.getMonthNumber()
                 + SPACE + monthCalendar.getMonthTitle() + getExtension();
